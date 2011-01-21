@@ -6,12 +6,12 @@ namespace ActiveRecord
 {
     public class Entity : DynamicObject, IEntity
     {
-        protected dynamic self;
+        protected dynamic Self;
 
         public Entity()
         {
             Properties = new Dictionary<string, object>();
-            self = this;
+            Self = this;
         }
 
         public Dictionary<string, object> Properties { get; set; }

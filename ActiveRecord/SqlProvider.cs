@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace ActiveRecord
@@ -34,5 +35,10 @@ namespace ActiveRecord
         {
             return CreateCommand(sql).ExecuteScalar();
         }
+
+        public void ExecuteNonQuery(string sql)
+        {
+            CreateCommand(sql).ExecuteNonQuery();
+        }
     }
-}
+}   

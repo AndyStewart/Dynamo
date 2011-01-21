@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using Machine.Specifications;
 
 namespace ActiveRecord.Specs
@@ -29,15 +28,56 @@ namespace ActiveRecord.Specs
         private Because of = () =>
                                  {
                                      contact.FirstName = "First Name";
+                                     contact.Surname = "Surname";
                                      repository.Save(contact);
-                                     dbContact = repository.FindBySql<Contact>("Select * from Contact where Id=" + contact.Id);
+                                     contactsFound = repository.FindBySql<Contact>("Select * from Contact where Id=" + contact.Id);
                                  };
 
-        It Should_save_contacts_first_name = () => ((string)dbContact[0].FirstName).ShouldEqual("First Name");
+        It Should_set_id = () => ((int)contactsFound[0].Id).ShouldNotEqual(0);
+        It Should_save_contacts_first_name = () => ((string)contactsFound[0].FirstName).ShouldEqual("First Name");
+        It Should_save_contacts_surname = () => ((string)contactsFound[0].Surname).ShouldEqual("Surname");
+        
 
         private static dynamic contact;
         private static Repository repository = new Repository();
-        private static IList<dynamic> dbContact;
+        private static IList<dynamic> contactsFound;
+    }
+
+    public class When_loading_back_existing_entity_by_id
+    {
+        Establish context = () =>
+                                        {
+                                            contact = new Contact();
+                                            contact.FirstName = "Bob Dylan";
+                                            repository = new Repository();
+                                            repository.Save(contact);
+                                        };
+
+        Because of = () => dbContact = repository.GetById<Contact>(contact.Id);
+        It Should_return_correct_entity_id = () => ((decimal)dbContact.Id).ShouldEqual((decimal)contact.Id);
+        It Should_return_correct_entity_contents = () => ((string)dbContact.FirstName).ShouldEqual((string)contact.FirstName);
+
+        private static dynamic contact;
+        private static Repository repository;
+        private static dynamic dbContact;
+    }
+
+    public class When_deleting_an_entity
+    {
+        Establish context = () =>
+        {
+            contact = new Contact();
+            contact.FirstName = "Bob Dylan";
+            repository = new Repository();
+            repository.Save(contact);
+        };
+
+        Because of = () => repository.Delete(contact);
+
+        It Should_return_null_when_querying_for_deleted_entity = () => ((object)repository.GetById<Contact>(contact.Id)).ShouldBeNull();
+
+        private static dynamic contact;
+        private static Repository repository;
     }
 
     public class Contact : Entity
@@ -46,7 +86,7 @@ namespace ActiveRecord.Specs
         {
             get
             {
-                return "Mr " + self.FirstName;
+                return "Mr " + Self.FirstName;
             }
         }
     }

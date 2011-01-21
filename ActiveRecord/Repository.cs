@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace ActiveRecord
 {
@@ -14,7 +15,7 @@ namespace ActiveRecord
             return FindBySql<Entity>(sqlString);
         }
 
-        public IList<dynamic> FindBySql<T>(string sqlString)
+        public IList<dynamic> FindBySql<T>(string sqlString) where T : Entity
         {
             using (var reader = dbProvider.ExecuteReader(sqlString))
             {
@@ -61,6 +62,17 @@ namespace ActiveRecord
                 return "'" + value + "'";
 
             return value.ToString();
+        }
+
+        public T GetById<T>(object id) where T : Entity
+        {
+            var results = FindBySql<T>("SELECT * FROM " + typeof (T).Name + " WHERE Id=" + id);
+            return results.Count == 0 ? null : results[0];
+        }
+
+        public void Delete<T>(T contact) where T : Entity
+        {
+            dbProvider.ExecuteNonQuery("DELETE FROM " + typeof (T).Name + " WHERE Id=" + ((dynamic) contact).Id);
         }
     }
 }
