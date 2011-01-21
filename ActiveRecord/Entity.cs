@@ -7,6 +7,17 @@ namespace ActiveRecord
     public class Entity : DynamicObject, IEntity
     {
         protected dynamic Self;
+        public int Id
+        {
+            get
+            {
+                return (int) Properties["Id"];
+            }
+            set
+            {
+                Properties["Id"] = value;
+            }
+        }
 
         public Entity()
         {

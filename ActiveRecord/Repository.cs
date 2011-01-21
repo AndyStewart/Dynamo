@@ -51,7 +51,7 @@ namespace ActiveRecord
 
             sqlString = sqlString + "(" + columnNameString + ") VALUES (" + valueString + "); SELECT @@IDENTITY";
 
-            ((dynamic) entity).Id = dbProvider.ExecuteScalar(sqlString);
+            ((dynamic) entity).Id = Convert.ToInt32(dbProvider.ExecuteScalar(sqlString));
         }
 
         private string valueEncode(object value)
@@ -64,7 +64,7 @@ namespace ActiveRecord
             return value.ToString();
         }
 
-        public T GetById<T>(object id) where T : Entity
+        public T GetById<T>(int id) where T : Entity
         {
             var results = FindBySql<T>("SELECT * FROM " + typeof (T).Name + " WHERE Id=" + id);
             return results.Count == 0 ? null : results[0];
