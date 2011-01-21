@@ -30,17 +30,43 @@ namespace ActiveRecord.Specs
                                      contact.FirstName = "First Name";
                                      contact.Surname = "Surname";
                                      repository.Save(contact);
-                                     contactsFound = repository.FindBySql<Contact>("Select * from Contact where Id=" + contact.Id);
+
+                                     contactsFound = repository.GetById<Contact>(contact.Id);
                                  };
 
-        It Should_set_id = () => ((int)contactsFound[0].Id).ShouldNotEqual(0);
-        It Should_save_contacts_first_name = () => ((string)contactsFound[0].FirstName).ShouldEqual("First Name");
-        It Should_save_contacts_surname = () => ((string)contactsFound[0].Surname).ShouldEqual("Surname");
+        It Should_set_id = () => ((int)contactsFound.Id).ShouldNotEqual(0);
+        It Should_save_contacts_first_name = () => ((string)contactsFound.FirstName).ShouldEqual("First Name");
+        It Should_save_contacts_surname = () => ((string)contactsFound.Surname).ShouldEqual("Surname");
         
+        private static dynamic contact;
+        private static Repository repository = new Repository();
+        private static dynamic contactsFound;
+    }
+
+    public class When_updating_existing_entity
+    {
+        Establish context = () => contact = new Contact();
+
+        private Because of = () =>
+        {
+            contact.FirstName = "First Name";
+            contact.Surname = "Surname";
+            repository.Save(contact);
+
+            contact.FirstName = "My New First Name";
+            contact.Surname= "My New Surname";
+            repository.Save(contact);
+
+            contactsFound = repository.GetById<Contact>(contact.Id);
+        };
+
+        It Should_set_id = () => ((int)contactsFound.Id).ShouldNotEqual(0);
+        It Should_save_contacts_first_name = () => ((string)contactsFound.FirstName).ShouldEqual("My New First Name");
+        It Should_save_contacts_surname = () => ((string)contactsFound.Surname).ShouldEqual("My New Surname");
 
         private static dynamic contact;
         private static Repository repository = new Repository();
-        private static IList<dynamic> contactsFound;
+        private static dynamic contactsFound;
     }
 
     public class When_loading_back_existing_entity_by_id

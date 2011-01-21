@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
+using System.Linq;
 
 namespace ActiveRecord
 {
@@ -35,6 +35,31 @@ namespace ActiveRecord
 
         public void Save(Entity entity)
         {
+            if (entity.Properties.ContainsKey("Id"))
+            {
+                ExecuteUpdateCommand(entity);
+            }
+            else
+            {
+                ExecuteInsert(entity);
+            }
+        }
+
+        private void ExecuteUpdateCommand(Entity entity)
+        {
+            var entityType = entity.GetType();
+            var sqlString = "UPDATE " + entityType.Name + " SET ";
+
+            foreach (var property in entity.Properties.Where(q => q.Key != "Id"))
+                sqlString += property.Key + "=" + ValueEncode(property.Value) + ",";
+
+            sqlString = sqlString.TrimEnd(',');
+            sqlString += " WHERE Id=" + entity.Properties["Id"];
+            dbProvider.ExecuteNonQuery(sqlString);
+        }
+
+        private void ExecuteInsert(Entity entity)
+        {
             var entityType = entity.GetType();
             var sqlString = "INSERT INTO " + entityType.Name;
 
@@ -43,7 +68,7 @@ namespace ActiveRecord
             foreach (var property in entity.Properties)
             {
                 columnNameString += property.Key + ",";
-                valueString += valueEncode(property.Value) + ",";
+                valueString += ValueEncode(property.Value) + ",";
             }
 
             columnNameString = columnNameString.TrimEnd(',');
@@ -54,7 +79,7 @@ namespace ActiveRecord
             ((dynamic) entity).Id = Convert.ToInt32(dbProvider.ExecuteScalar(sqlString));
         }
 
-        private string valueEncode(object value)
+        private static string ValueEncode(object value)
         {
             var valueType = value.GetType();
 

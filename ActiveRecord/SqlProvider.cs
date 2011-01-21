@@ -7,6 +7,7 @@ namespace ActiveRecord
     internal class SqlProvider : IDbProvider
     {
         private readonly string connectionString;
+        private SqlConnection sqlConnection;
 
         public SqlProvider(string connectionString)
         {
@@ -20,25 +21,27 @@ namespace ActiveRecord
 
         private SqlCommand CreateCommand(string sql)
         {
-            SqlConnection sqlConnection = GetSqlConnection();
-            return new SqlCommand(sql, sqlConnection);
+            return new SqlCommand(sql, GetSqlConnection());
         }
 
         private SqlConnection GetSqlConnection()
         {
-            var sqlConnection = new SqlConnection(connectionString);
+            sqlConnection = new SqlConnection(connectionString);
             sqlConnection.Open();
             return sqlConnection;
         }
 
         public object ExecuteScalar(string sql)
         {
-            return CreateCommand(sql).ExecuteScalar();
+            var value = CreateCommand(sql).ExecuteScalar();
+            sqlConnection.Close();
+            return value;
         }
 
         public void ExecuteNonQuery(string sql)
         {
             CreateCommand(sql).ExecuteNonQuery();
+            sqlConnection.Close();
         }
     }
 }   
