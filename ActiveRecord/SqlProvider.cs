@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ActiveRecord
@@ -41,6 +42,12 @@ namespace ActiveRecord
         public void ExecuteNonQuery(string sql)
         {
             CreateCommand(sql).ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+
+        public void ExecuteCommand(ISqlCommand sqlCommand)
+        {
+            sqlCommand.Execute(CreateCommand(null));
             sqlConnection.Close();
         }
     }

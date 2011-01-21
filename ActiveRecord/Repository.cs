@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ActiveRecord
 {
-    public class Repository
+    public class Repository : IRepository
     {
         private const string ConnectionString = @"Data Source=.\sql2005;Initial Catalog=BobsDb;Integrated Security=True";
 
@@ -37,67 +36,23 @@ namespace ActiveRecord
         {
             if (entity.Properties.ContainsKey("Id"))
             {
-                ExecuteUpdateCommand(entity);
-            }
-            else
-            {
-                ExecuteInsert(entity);
-            }
-        }
-
-        private void ExecuteUpdateCommand(Entity entity)
-        {
-            var entityType = entity.GetType();
-            var sqlString = "UPDATE " + entityType.Name + " SET ";
-
-            foreach (var property in entity.Properties.Where(q => q.Key != "Id"))
-                sqlString += property.Key + "=" + ValueEncode(property.Value) + ",";
-
-            sqlString = sqlString.TrimEnd(',');
-            sqlString += " WHERE Id=" + entity.Properties["Id"];
-            dbProvider.ExecuteNonQuery(sqlString);
-        }
-
-        private void ExecuteInsert(Entity entity)
-        {
-            var entityType = entity.GetType();
-            var sqlString = "INSERT INTO " + entityType.Name;
-
-            var columnNameString = "";
-            var valueString = "";
-            foreach (var property in entity.Properties)
-            {
-                columnNameString += property.Key + ",";
-                valueString += ValueEncode(property.Value) + ",";
+                dbProvider.ExecuteCommand(new UpdateCommand(entity));
+                return;
             }
 
-            columnNameString = columnNameString.TrimEnd(',');
-            valueString = valueString.TrimEnd(',');
-
-            sqlString = sqlString + "(" + columnNameString + ") VALUES (" + valueString + "); SELECT @@IDENTITY";
-
-            ((dynamic) entity).Id = Convert.ToInt32(dbProvider.ExecuteScalar(sqlString));
-        }
-
-        private static string ValueEncode(object value)
-        {
-            var valueType = value.GetType();
-
-            if (valueType == typeof(string))
-                return "'" + value + "'";
-
-            return value.ToString();
+            dbProvider.ExecuteCommand(new InsertCommand(entity));
         }
 
         public T GetById<T>(int id) where T : Entity
         {
-            var results = FindBySql<T>("SELECT * FROM " + typeof (T).Name + " WHERE Id=" + id);
-            return results.Count == 0 ? null : results[0];
+            var command = new FindByIdCommand<T>(id);
+            dbProvider.ExecuteCommand(command);
+            return command.Result;
         }
 
-        public void Delete<T>(T contact) where T : Entity
+        public void Delete<T>(T entity) where T : Entity
         {
-            dbProvider.ExecuteNonQuery("DELETE FROM " + typeof (T).Name + " WHERE Id=" + ((dynamic) contact).Id);
+            dbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
     }
 }
