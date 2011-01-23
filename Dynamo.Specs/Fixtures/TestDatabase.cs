@@ -1,4 +1,5 @@
 using System;
+using Dynamo.Provider;
 
 namespace Dynamo.Specs.Fixtures
 {

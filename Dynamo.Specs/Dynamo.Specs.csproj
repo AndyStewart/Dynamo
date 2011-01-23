@@ -51,7 +51,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ActiveRecord\Dynamo.csproj">
+    <ProjectReference Include="..\Dynamo\Dynamo.csproj">
       <Project>{BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD}</Project>
       <Name>Dynamo</Name>
     </ProjectReference>

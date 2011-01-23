@@ -1,9 +1,8 @@
-﻿using System;
-using System.Data;
-using System.Data.Common;
+﻿using System.Data;
 using System.Data.SqlClient;
+using Dynamo.Commands;
 
-namespace Dynamo
+namespace Dynamo.Provider
 {
     public class SqlProvider : IDbProvider
     {

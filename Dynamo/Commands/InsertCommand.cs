@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Dynamo
+namespace Dynamo.Commands
 {
     public class InsertCommand : ISqlCommand
     {

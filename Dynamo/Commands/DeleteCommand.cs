@@ -1,7 +1,6 @@
 ﻿using System.Data;
-using Dynamo;
 
-namespace Dynamo
+namespace Dynamo.Commands
 {
     public class DeleteCommand : ISqlCommand
     {

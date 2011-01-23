@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dynamo;
+using Dynamo.Commands;
+using Dynamo.Provider;
 
 namespace Dynamo
 {

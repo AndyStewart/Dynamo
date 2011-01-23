@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Dynamo
+namespace Dynamo.Commands
 {
     public interface ISqlCommand
     {

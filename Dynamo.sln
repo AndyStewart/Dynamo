@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo", "ActiveRecord\Dynamo.csproj", "{BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo", "Dynamo\Dynamo.csproj", "{BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo.Specs", "ActiveRecord.Specs\Dynamo.Specs.csproj", "{F453B196-45CD-4E7F-AC32-49AE863EF89B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo.Specs", "Dynamo.Specs\Dynamo.Specs.csproj", "{F453B196-45CD-4E7F-AC32-49AE863EF89B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

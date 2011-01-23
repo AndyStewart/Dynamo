@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Dynamo
+namespace Dynamo.Commands
 {
     public class FindByIdCommand<T> : ISqlCommand where T : Entity
     {

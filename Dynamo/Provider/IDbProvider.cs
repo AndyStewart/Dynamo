@@ -1,6 +1,7 @@
 ﻿using System.Data;
+using Dynamo.Commands;
 
-namespace Dynamo
+namespace Dynamo.Provider
 {
     internal interface IDbProvider
     {

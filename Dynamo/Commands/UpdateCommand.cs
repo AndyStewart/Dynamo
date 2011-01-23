@@ -1,8 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 
-namespace Dynamo
+namespace Dynamo.Commands
 {
     public class UpdateCommand : ISqlCommand   
     {

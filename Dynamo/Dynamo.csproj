@@ -40,18 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeleteCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Entity.cs" />
-    <Compile Include="FindByIdCommand.cs" />
-    <Compile Include="ISqlCommand.cs" />
-    <Compile Include="IDbProvider.cs" />
+    <Compile Include="Commands\FindByIdCommand.cs" />
+    <Compile Include="Commands\ISqlCommand.cs" />
+    <Compile Include="Provider\IDbProvider.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="InsertCommand.cs" />
+    <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlProvider.cs" />
-    <Compile Include="UpdateCommand.cs" />
+    <Compile Include="Provider\SqlProvider.cs" />
+    <Compile Include="Commands\UpdateCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
