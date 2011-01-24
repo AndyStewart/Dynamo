@@ -2,8 +2,7 @@ A Dynamic ORM, that aims to keep ORM simple while being Code Focused first.
 
 Below is a very early example.
 
-
-/ Db Table: Contact
+// Db Table: Contact
 // int Id - Primary Key
 // nvarchar(255) FirstName
 // nvarchar(255) Surname
@@ -11,19 +10,22 @@ Below is a very early example.
 
 public class Contact : Entity
 {
-     public string FullName
-        {
-                get { return Self.FirstName + " " + Self.Surname;
-                   }
-        }
+	// Add custom Property, all other properties are loaded dynamically from the db.
+	public string FullName
+	{
+		get { return Self.FirstName + " " + Self.Surname; }
+	}
+}
 
-        dynamic contact = new Contact();
-        contact.FirstName = "Andy";
-        contact.Surname = "Stewart";
+// Create New Contact
+dynamic contact = new Contact();
+contact.FirstName = "Andy";
+contact.Surname = "Stewart";
 
-        var repository = new Respository();
-        repository.Save(contact);
+var repository = new Respository();
+repository.Save(contact);
 
-        var dbContact = repository.GetById<Contact>(contact.Id);
-        Console.WriteLine(dbContact.FullName); // Outputs "Andy Stewart"
+// Retrieve contact back from Db.
+var dbContact = repository.GetById<Contact>(contact.Id);
+Console.WriteLine(dbContact.FullName); // Outputs "Andy Stewart"
 
