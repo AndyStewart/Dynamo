@@ -48,8 +48,8 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="Commands\InsertCommand.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Relationship.cs" />
-    <Compile Include="RelationshipType.cs" />
+    <Compile Include="Property.cs" />
+    <Compile Include="PropertyType.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\SqlProvider.cs" />

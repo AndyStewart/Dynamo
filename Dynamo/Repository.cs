@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dynamo;
 using Dynamo.Commands;
 using Dynamo.Provider;
@@ -38,7 +39,10 @@ namespace Dynamo
 
         public void Save(Entity entity)
         {
-            if (entity.Properties.ContainsKey("Id"))
+            if (entity.Repository == null)
+                entity.Repository = this;
+
+            if (entity.Properties.Any(q =>  q.PropertyName == "Id"))
             {
                 dbProvider.ExecuteCommand(new UpdateCommand(entity));
                 return;

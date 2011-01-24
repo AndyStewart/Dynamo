@@ -17,11 +17,11 @@ namespace Dynamo.Commands
             var entityType = entity.GetType();
             var sqlString = "UPDATE " + entityType.Name + " SET ";
 
-            foreach (var property in entity.Properties.Where(q => q.Key != "Id"))
-                sqlString += property.Key + "=" + ValueEncode(property.Value) + ",";
+            foreach (var property in entity.Properties.Where(q => q.PropertyName != "Id"))
+                sqlString += property.ColumnName + "=" + ValueEncode(property.Value) + ",";
 
             sqlString = sqlString.TrimEnd(',');
-            sqlString += " WHERE Id=" + entity.Properties["Id"];
+            sqlString += " WHERE Id=" + entity.Self.Id;
 
             dbCommand.CommandText = sqlString;
             dbCommand.ExecuteNonQuery();

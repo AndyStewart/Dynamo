@@ -131,32 +131,4 @@ namespace Dynamo.Specs
         public static Repository repository;
 
     }
-
-
-    public class Company : Entity
-    {
-        public string FullName
-        {
-            get
-            {
-                return "Mr " + Self.FirstName;
-            }
-        }
-    }
-
-    public class Contact : Entity
-    {
-        public Contact()
-        {
-            BelongsTo("Company");
-        }
-
-        public string FullName
-        {
-            get
-            {
-                return "Mr " + Self.FirstName;
-            }
-        }
-    }
 }

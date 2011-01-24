@@ -21,7 +21,7 @@ namespace Dynamo.Commands
             var valueString = "";
             foreach (var property in entity.Properties)
             {
-                columnNameString += property.Key + ",";
+                columnNameString += property.ColumnName + ",";
                 valueString += ValueEncode(property.Value) + ",";
             }
 
@@ -37,6 +37,9 @@ namespace Dynamo.Commands
 
         private static string ValueEncode(object value)
         {
+            if (value == null)
+                return "null";
+
             var valueType = value.GetType();
 
             if (valueType == typeof(string))

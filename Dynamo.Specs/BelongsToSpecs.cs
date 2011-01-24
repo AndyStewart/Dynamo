@@ -1,3 +1,4 @@
+using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
 
 namespace Dynamo.Specs
