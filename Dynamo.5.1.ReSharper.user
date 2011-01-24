@@ -7,8 +7,27 @@
     </boolean>
   </SettingsComponent>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="0" fromTop="0" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:IDbProvider.cs" caret="0" fromTop="0" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:ISqlCommand.cs" caret="35" fromTop="2" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Repository.cs" caret="0" fromTop="0" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:InsertCommand.cs" caret="154" fromTop="7" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="49" fromTop="3" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:UpdateCommand.cs" caret="1101" fromTop="39" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:DeleteCommand.cs" caret="49" fromTop="3" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:IDbProvider.cs" caret="61" fromTop="2" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="1442" fromTop="51" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:ISqlCommand.cs" caret="179" fromTop="2" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:ISqlCommand.cs" caret="35" fromTop="2" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:InsertCommand.cs" caret="1373" fromTop="47" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:InsertCommand.cs" caret="154" fromTop="7" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="49" fromTop="3" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:UpdateCommand.cs" caret="1101" fromTop="39" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:DeleteCommand.cs" caret="49" fromTop="3" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
