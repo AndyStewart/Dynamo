@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dynamo
 {
@@ -9,5 +10,6 @@ namespace Dynamo
         void Save(Entity entity);
         T GetById<T>(int id) where T : Entity;
         void Delete<T>(T entity) where T : Entity;
+        object GetById(Type entityType, int id);
     }
 }

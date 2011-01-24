@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fixtures\TestDatabase.cs" />
+    <Compile Include="HasOneSpecs.cs" />
     <Compile Include="RepositorySpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

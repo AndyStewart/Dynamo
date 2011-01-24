@@ -1,0 +1,35 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="773" fromTop="15" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:licence.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?licence.txt" caret="0" fromTop="0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="771" fromTop="27" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="449" fromTop="18" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="645" fromTop="26" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="364" fromTop="15" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="333" fromTop="12" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="113" fromTop="3" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="0" fromTop="0" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

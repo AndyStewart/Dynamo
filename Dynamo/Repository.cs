@@ -28,6 +28,7 @@ namespace Dynamo
                 while (reader.Read())
                 {
                     var entity = (IEntity)Activator.CreateInstance<T>();
+                    entity.Repository = this;
                     entity.Populate(reader);
                     results.Add(entity);
                 }
@@ -48,14 +49,22 @@ namespace Dynamo
 
         public T GetById<T>(int id) where T : Entity
         {
-            var command = new FindByIdCommand<T>(id);
+            return (T) GetById(typeof (T), id);
+        }
+
+        public object GetById(Type entityType, int id)
+        {
+            var command = new FindByIdCommand(entityType, id);
             dbProvider.ExecuteCommand(command);
+            command.Result.Repository = this;
             return command.Result;
         }
+
 
         public void Delete<T>(T entity) where T : Entity
         {
             dbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
+
     }
 }

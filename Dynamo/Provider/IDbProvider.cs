@@ -3,7 +3,7 @@ using Dynamo.Commands;
 
 namespace Dynamo.Provider
 {
-    internal interface IDbProvider
+    public interface IDbProvider
     {
         IDataReader ExecuteReader(string sql);
         object ExecuteScalar(string sql);

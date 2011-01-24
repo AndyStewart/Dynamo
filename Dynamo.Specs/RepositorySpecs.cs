@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Dynamo;
-using Dynamo.Specs.Fixtures;
+﻿using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
 
 namespace Dynamo.Specs
@@ -148,6 +146,11 @@ namespace Dynamo.Specs
 
     public class Contact : Entity
     {
+        public Contact()
+        {
+            BelongsTo("Company");
+        }
+
         public string FullName
         {
             get
