@@ -20,7 +20,6 @@ namespace Dynamo.Specs
         It should_populate_full_name = () => ((string)contact[0].FullName).ShouldEqual("Mr Andy");
 
         private static dynamic contact;
-        private static Repository repository;
     }
 
 

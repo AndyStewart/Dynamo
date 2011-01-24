@@ -14,21 +14,16 @@ namespace Dynamo.Specs.Fixtures
 
            try
            {
-               provider.ExecuteNonQuery(@"DROP DATABASE [Dynamo_Test]");
+               provider.ExecuteNonQuery(@"CREATE DATABASE [Dynamo_Test]");
+               
            }
            catch (Exception e)
            {
-               // Fails if it doesn't exist
-           }
-           
 
-           // Create Db
-           provider.ExecuteNonQuery(@"CREATE DATABASE [Dynamo_Test] ON  PRIMARY 
-                        ( NAME = N'Dynamo_Test', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Dynamo_Test.mdf' , SIZE = 3072KB , FILEGROWTH = 1024KB )
-                         LOG ON 
-                        ( NAME = N'Dynamo_Test_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Dynamo_Test_log.ldf' , SIZE = 1024KB , FILEGROWTH = 10%)");
+           }
 
            var provider2 = new SqlProvider(@"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True");
+           provider2.ExecuteNonQuery(@"DROP TABLE dbo.Contact");
            provider2.ExecuteNonQuery(@"CREATE TABLE dbo.Contact
 	                    (
 	                    Id int NOT NULL IDENTITY (1, 1),
@@ -42,6 +37,8 @@ namespace Dynamo.Specs.Fixtures
 	                    Id
 	                    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]");
 
+           
+           provider2.ExecuteNonQuery(@"DROP TABLE dbo.Company");
            provider2.ExecuteNonQuery(@"CREATE TABLE dbo.Company
 	                    (
 	                    Id int NOT NULL IDENTITY (1, 1),
