@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
 
@@ -126,20 +129,20 @@ namespace Dynamo.Specs
     {
         Because of = () =>
                          {
-                             contact = new Contact();
+                             dynamic contact = new Contact();
                              contact.FirstName = "Andy";
                              contact.Surname = "Stewart";
                              repository.Save(contact);
 
-                             contact = new Contact();
-                             contact.FirstName = "Bob";
-                             contact.Surname = "Stewart";
-                             repository.Save(contact);
+                             dynamic contact2 = new Contact();
+                             contact2.FirstName = "Bob";
+                             contact2.Surname = "Stewart";
+                             repository.Save(contact2);
 
-                             contact = new Contact();
-                             contact.FirstName = "Andy";
-                             contact.Surname = "Smith";
-                             repository.Save(contact);
+                             dynamic contact3 = new Contact();
+                             contact3.FirstName = "Andy";
+                             contact3.Surname = "Smith";
+                             repository.Save(contact3);
 
                              results = repository.Find<Contact>("FirstName='Andy'");
                          };
@@ -156,30 +159,55 @@ namespace Dynamo.Specs
     {
         Because of = () =>
         {
-            contact = new Contact();
+            dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
             repository.Save(contact);
 
-            contact = new Contact();
-            contact.FirstName = "Bob";
-            contact.Surname = "Stewart";
-            repository.Save(contact);
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Bob";
+            contact2.Surname = "Stewart";
+            repository.Save(contact2);
 
-            contact = new Contact();
-            contact.FirstName = "Andy";
-            contact.Surname = "Smith";
-            repository.Save(contact);
+            dynamic contact3 = new Contact();
+            contact3.FirstName = "Andy";
+            contact3.Surname = "Smith";
+            repository.Save(contact3);
 
             results = repository.Find<Contact>("FirstName=@FirstName", new { FirstName="Andy"});
         };
 
-        private static dynamic contact;
-
         It should_return_2_records = () => results.Count.ShouldEqual(2);
         It should_return_first_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Stewart").ShouldBeTrue();
         It should_return_second_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Smith").ShouldBeTrue();
-        private static IList<dynamic> results;
+        static IList<dynamic> results;
+    }
+
+    public class When_a_find_is_performed_by_a_single_column_with_multiple_parameters : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Bob";
+            contact2.Surname = "Stewart";
+            repository.Save(contact2);
+
+            dynamic contact3 = new Contact();
+            contact3.FirstName = "Andy";
+            contact3.Surname = "Smith";
+            repository.Save(contact3);
+
+            results = repository.Find<Contact>("FirstName=@FirstName and Surname=@Surname", new { FirstName = "Andy", Surname="Stewart" });
+        };
+
+        It should_return_1_records = () => results.Count.ShouldEqual(1);
+        It should_return_first_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Stewart").ShouldBeTrue();
+        static IList<dynamic> results;
     }
 
     public class with_fresh_database
