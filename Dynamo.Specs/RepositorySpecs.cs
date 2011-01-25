@@ -31,7 +31,7 @@ namespace Dynamo.Specs
 
                              dynamic andyContact = new Contact();
                              andyContact.FirstName = "Andy";
-                             andyContact.Company_Id = company.Id;
+                             andyContact.Company = company;
                              repository.Save(andyContact);
 
                              contact =repository.FindBySql("Select Contact.Id, Contact.FirstName, Company.Name from Contact inner join Company on (Company.Id=Contact.Company_Id)");

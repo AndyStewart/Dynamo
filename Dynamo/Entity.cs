@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
@@ -41,14 +40,32 @@ namespace Dynamo
 
             if (property.Type == PropertyType.BelongsTo)
             {
-                result = property.Value != DBNull.Value ? Repository.GetById(property.PropertyType, (int) property.Value) : null;
+                var entity = property.Value as Entity;
+
+                if (entity != null)
+                {
+                    result = entity;
+                    return true;
+                }
+
+                if (property.Value == null)
+                {
+                    result = null;
+                    return true;
+                }
+
+                result = Repository.GetById(property.PropertyType, (int) property.Value);
                 return true;
             }
 
             if (property.Type == PropertyType.HasMany)
             {
-                var collectionProxyType = typeof (CollectionProxy<>).MakeGenericType(property.PropertyType.GetGenericArguments()[0]);
-                result = Activator.CreateInstance(collectionProxyType, this, property);
+                if (property.Value == null)
+                {
+                    var collectionProxyType = typeof (CollectionProxy<>).MakeGenericType(property.PropertyType.GetGenericArguments()[0]);
+                    property.Value = Activator.CreateInstance(collectionProxyType, this, property);
+                }
+                result = property.Value;
                 return true;
             }
 
@@ -90,18 +107,24 @@ namespace Dynamo
         {
             for (var i = 0; i < reader.FieldCount; i++)
             {
-                var propertyName = reader.GetName(i);
-                var property = Properties.FirstOrDefault(q => q.PropertyName == propertyName);
+                var columnName = reader.GetName(i);
+                var property = Properties.FirstOrDefault(q => q.ColumnName == columnName);
 
                 if (property == null)
-                    property = new Property();
+                {
+                    property = new Property
+                                   {
+                                       PropertyName = reader.GetName(i),
+                                       Type = PropertyType.Property
+                                   };
+                    Properties.Add(property);
+                }
 
                 property.ColumnName = reader.GetName(i);
-                property.Value = reader[i];
-                property.Type = PropertyType.Property;
-                property.PropertyType = property.Value.GetType();
+                property.Value = reader[i] == DBNull.Value ? null : reader[i];
 
-                Properties.Add(property);
+                if (property.Value != null && property.Type == PropertyType.Property)
+                    property.PropertyType = property.Value.GetType();
             }
         }
 
@@ -125,88 +148,6 @@ namespace Dynamo
                                       PropertyName = propertyName,
                                       PropertyType = typeof(List<>).MakeGenericType(typeof(T))
                                   });
-        }
-    }
-
-    public class CollectionProxy<T> : IList<T>  where T:Entity
-    {
-        private readonly Entity entity;
-        private IList<T> innerList;
-
-        public CollectionProxy(Entity entity, Property hasManyProperty)
-        {
-            this.entity = entity;
-
-            var entityType = hasManyProperty.PropertyType.GetGenericArguments()[0];
-            innerList = ((IList<object>)entity.Repository.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
-        }
-
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return innerList.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public void Add(T item)
-        {
-            entity.Repository.Save(item);
-            innerList.Add(item);
-        }
-
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Contains(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Remove(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Count
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public bool IsReadOnly
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int IndexOf(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(int index, T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveAt(int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T this[int index]
-        {
-            get { return innerList[index]; }
-            set { throw new NotImplementedException(); }
         }
     }
 }

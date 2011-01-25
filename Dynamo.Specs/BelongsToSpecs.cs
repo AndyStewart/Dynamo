@@ -17,7 +17,7 @@ namespace Dynamo.Specs
                             repository.Save(contact);
                         };
 
-        It should_correctly_store_the_entity_id_in_the_table = () => ((int)repository.GetById<Contact>(contact.Id).Company_Id).ShouldEqual((int)company.Id);
+        It should_correctly_store_the_entity_id_in_the_table = () => ((int)repository.GetById<Contact>(contact.Id).Company.Id).ShouldEqual((int)company.Id);
         
         static dynamic contact;
         static dynamic company;
@@ -35,12 +35,14 @@ namespace Dynamo.Specs
             contact.FirstName = "Andy";
             contact.Company = company;
             repository.Save(contact);
+            dbContact = repository.GetById<Contact>(contact.Id);
         };
 
-        It should_correctly_load_back_entity = () => ((int)repository.GetById<Contact>(contact.Id).Company.Id).ShouldEqual((int)company.Id);
+        It should_correctly_load_back_entity = () => ((int)dbContact.Company.Id).ShouldEqual((int)company.Id);
 
         static dynamic contact;
         static dynamic company;
+        private static dynamic dbContact;
     }
 
     public class When_saving_an_entity_that_has_one_related_entity_which_is_null : with_fresh_database

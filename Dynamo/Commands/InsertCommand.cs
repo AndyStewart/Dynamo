@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 
 namespace Dynamo.Commands
 {
@@ -19,7 +20,7 @@ namespace Dynamo.Commands
 
             var columnNameString = "";
             var valueString = "";
-            foreach (var property in entity.Properties)
+            foreach (var property in entity.Properties.Where(q => q.Type != PropertyType.HasMany))
             {
                 columnNameString += property.ColumnName + ",";
                 valueString += ValueEncode(property.Value) + ",";
@@ -37,6 +38,10 @@ namespace Dynamo.Commands
 
         private static string ValueEncode(object value)
         {
+            var entity = value as Entity;
+            if (entity != null)
+                return entity.Self.Id.ToString();
+
             if (value == null)
                 return "null";
 

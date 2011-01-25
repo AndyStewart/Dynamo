@@ -29,6 +29,9 @@ namespace Dynamo.Commands
 
         private static string ValueEncode(object value)
         {
+            if (value == null)
+                return "null";
+
             var valueType = value.GetType();
 
             if (valueType == typeof(string))

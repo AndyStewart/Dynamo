@@ -11,15 +11,7 @@
       <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="773" fromTop="15" />
       <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:licence.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?licence.txt" caret="0" fromTop="0" />
     </RecentFiles>
-    <RecentEdits>
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="771" fromTop="27" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="449" fromTop="18" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="645" fromTop="26" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="364" fromTop="15" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="333" fromTop="12" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="113" fromTop="3" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="0" fromTop="0" />
-    </RecentEdits>
+    <RecentEdits />
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -32,4 +24,110 @@
     </NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="with_fresh_database`0" priority="0" />
+      <Item value="repository" priority="2" />
+      <Item value="var" priority="3" />
+      <Item value="new" priority="4" />
+      <Item value="Company`0" priority="2" />
+      <Item value="public" priority="0" />
+      <Item value="class" priority="0" />
+      <Item value="ctor" priority="1" />
+      <Item value="func" priority="1" />
+      <Item value="dynamic" priority="1" />
+      <Item value="company" priority="2" />
+      <Item value="contact" priority="2" />
+      <Item value="Behaves_like" priority="0" />
+      <Item value="It`0" priority="0" />
+      <Item value="Contact`0" priority="0" />
+      <Item value="Self" priority="0" />
+      <Item value="override" priority="0" />
+      <Item value="BelongsTo`0" priority="1" />
+      <Item value="List" priority="0" />
+      <Item value="Relationship`0" priority="1" />
+      <Item value="enum" priority="0" />
+      <Item value="Relationships" priority="3" />
+      <Item value="propertyName" priority="1" />
+      <Item value="if" priority="4" />
+      <Item value="q" priority="3" />
+      <Item value="binder" priority="3" />
+      <Item value="result" priority="3" />
+      <Item value="value" priority="1" />
+      <Item value="null" priority="1" />
+      <Item value="Queryable`0" priority="0" />
+      <Item value="return" priority="2" />
+      <Item value="findRelationship" priority="6" />
+      <Item value="DbProvider" priority="0" />
+      <Item value="IRepository`0" priority="0" />
+      <Item value="Properties" priority="3" />
+      <Item value="true" priority="0" />
+      <Item value="int" priority="0" />
+      <Item value="GetById`0" priority="0" />
+      <Item value="T`0" priority="0" />
+      <Item value="typeof" priority="0" />
+      <Item value="entityType" priority="0" />
+      <Item value="BelongsTo" priority="0" />
+      <Item value="this" priority="3" />
+      <Item value="Where`1" priority="0" />
+      <Item value="FirstOrDefault`1" priority="0" />
+      <Item value="else" priority="1" />
+      <Item value="DBNull`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Repository">
+      <Item value="Save`0" priority="1" />
+      <Item value="GetById`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Func`2">
+      <Item value="Method" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.MethodInfo">
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="ConvertAll`1" priority="0" />
+      <Item value="FirstOrDefault`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Relationship">
+      <Item value="Property" priority="3" />
+      <Item value="ColumnName" priority="3" />
+      <Item value="Type" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Dynamic.SetMemberBinder">
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Dynamic.GetMemberBinder">
+      <Item value="Name" priority="1" />
+      <Item value="ReturnType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.IRepository">
+      <Item value="GetById`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int32">
+      <Item value="ShouldEqual`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Entity">
+      <Item value="GetType`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Type">
+      <Item value="Assembly" priority="1" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.Assembly">
+      <Item value="GetType`0" priority="0" />
+      <Item value="GetTypes`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.IEntity">
+      <Item value="Repository" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Commands.FindByIdCommand">
+      <Item value="Result" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary`2">
+      <Item value="ContainsKey`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DBNull">
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>

@@ -60,7 +60,10 @@ namespace Dynamo
         {
             var command = new FindByIdCommand(entityType, id);
             dbProvider.ExecuteCommand(command);
-            command.Result.Repository = this;
+
+            if (command.Result != null)
+                command.Result.Repository = this;
+
             return command.Result;
         }
 
