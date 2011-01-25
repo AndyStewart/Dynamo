@@ -14,7 +14,7 @@ namespace Dynamo
         {
             this.entity = entity;
 
-            var entityType = hasManyProperty.PropertyType.GetGenericArguments()[0];
+            var entityType = hasManyProperty.Type.GetGenericArguments()[0];
             innerList = ((IList<object>)entity.Repository.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
         }
 

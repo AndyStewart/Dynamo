@@ -20,7 +20,7 @@ namespace Dynamo.Commands
 
             var columnNameString = "";
             var valueString = "";
-            foreach (var property in entity.Properties.Where(q => q.Type != PropertyType.HasMany))
+            foreach (var property in entity.Properties.Where(q => q.PropertyType != PropertyType.HasMany))
             {
                 columnNameString += property.ColumnName + ",";
                 valueString += ValueEncode(property.Value) + ",";

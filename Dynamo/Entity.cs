@@ -28,17 +28,17 @@ namespace Dynamo
             var property = Properties.FirstOrDefault(q => q.PropertyName == binder.Name);
             if (property == null)
             {
-                property = new Property { ColumnName = binder.Name, PropertyName = binder.Name, PropertyType = binder.ReturnType };
+                property = new Property { ColumnName = binder.Name, PropertyName = binder.Name, Type = binder.ReturnType };
                 Properties.Add(property);
             }
 
-            if (property.Type == PropertyType.Property)
+            if (property.PropertyType == PropertyType.Property)
             {
                 result = property.Value;
                 return true;
             }
 
-            if (property.Type == PropertyType.BelongsTo)
+            if (property.PropertyType == PropertyType.BelongsTo)
             {
                 var entity = property.Value as Entity;
 
@@ -54,15 +54,15 @@ namespace Dynamo
                     return true;
                 }
 
-                result = Repository.GetById(property.PropertyType, (int) property.Value);
+                result = Repository.GetById(property.Type, (int) property.Value);
                 return true;
             }
 
-            if (property.Type == PropertyType.HasMany)
+            if (property.PropertyType == PropertyType.HasMany)
             {
                 if (property.Value == null)
                 {
-                    var collectionProxyType = typeof (CollectionProxy<>).MakeGenericType(property.PropertyType.GetGenericArguments()[0]);
+                    var collectionProxyType = typeof (CollectionProxy<>).MakeGenericType(property.Type.GetGenericArguments()[0]);
                     property.Value = Activator.CreateInstance(collectionProxyType, this, property);
                 }
                 result = property.Value;
@@ -79,14 +79,14 @@ namespace Dynamo
             
             if (property == null)
             {
-                property = new Property { ColumnName = binder.Name, PropertyName = binder.Name, PropertyType = binder.ReturnType, Value = value };
+                property = new Property { ColumnName = binder.Name, PropertyName = binder.Name, Type = binder.ReturnType, Value = value };
                 Properties.Add(property);
             }
             
-            if (property.Type == PropertyType.Property)
+            if (property.PropertyType == PropertyType.Property)
                 property.Value = value;
 
-            if (property.Type == PropertyType.BelongsTo)
+            if (property.PropertyType == PropertyType.BelongsTo)
             {
                 property.Value = value;
                 return true;
@@ -109,7 +109,7 @@ namespace Dynamo
                     property = new Property
                                    {
                                        PropertyName = reader.GetName(i),
-                                       Type = PropertyType.Property
+                                       PropertyType = PropertyType.Property
                                    };
                     Properties.Add(property);
                 }
@@ -117,8 +117,8 @@ namespace Dynamo
                 property.ColumnName = reader.GetName(i);
                 property.Value = reader[i] == DBNull.Value ? null : reader[i];
 
-                if (property.Value != null && property.Type == PropertyType.Property)
-                    property.PropertyType = property.Value.GetType();
+                if (property.Value != null && property.PropertyType == PropertyType.Property)
+                    property.Type = property.Value.GetType();
             }
         }
 
@@ -126,10 +126,10 @@ namespace Dynamo
         {
             Properties.Add(new Property
                                   {
-                                      Type = PropertyType.BelongsTo,
+                                      PropertyType = PropertyType.BelongsTo,
                                       ColumnName = propertyName + "_Id",
                                       PropertyName = propertyName,
-                                      PropertyType = GetType().Assembly.GetTypes().FirstOrDefault(q => q.Name == propertyName)
+                                      Type = GetType().Assembly.GetTypes().FirstOrDefault(q => q.Name == propertyName)
                                   });
         }
 
@@ -137,10 +137,10 @@ namespace Dynamo
         {
             Properties.Add(new Property
                                   {
-                                      Type = PropertyType.HasMany,
+                                      PropertyType = PropertyType.HasMany,
                                       ColumnName = GetType().Name + "_Id",
                                       PropertyName = propertyName,
-                                      PropertyType = typeof(List<>).MakeGenericType(typeof(T))
+                                      Type = typeof(List<>).MakeGenericType(typeof(T))
                                   });
         }
     }
