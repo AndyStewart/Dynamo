@@ -42,12 +42,12 @@ namespace Dynamo
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return innerList.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            innerList.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(T item)
@@ -57,22 +57,23 @@ namespace Dynamo
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return innerList.Count; }
         }
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return innerList.IsReadOnly; }
         }
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            return innerList.IndexOf(item);
         }
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            entity.Repository.Save(item);
+            innerList.Insert(index, item);
         }
 
         public void RemoveAt(int index)
