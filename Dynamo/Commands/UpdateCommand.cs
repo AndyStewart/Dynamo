@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Dynamo.Commands
@@ -18,7 +20,11 @@ namespace Dynamo.Commands
             var sqlString = "UPDATE " + entityType.Name + " SET ";
 
             foreach (var property in entity.Properties.Where(q => q.PropertyName != "Id"))
-                sqlString += property.ColumnName + "=" + ValueEncode(property.Value) + ",";
+            {
+                sqlString += property.ColumnName + "= @" + property.PropertyName + ",";
+                dbCommand.Parameters.Add(new SqlParameter(property.PropertyName, property.Value ?? DBNull.Value));
+            }
+                
 
             sqlString = sqlString.TrimEnd(',');
             sqlString += " WHERE Id=" + entity.Self.Id;

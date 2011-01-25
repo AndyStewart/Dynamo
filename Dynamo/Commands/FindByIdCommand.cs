@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Dynamo.Commands
 {
@@ -16,7 +17,8 @@ namespace Dynamo.Commands
 
         public void Execute(IDbCommand dbCommand)
         {
-            dbCommand.CommandText = "SELECT * FROM " + entityType.Name + " WHERE Id=" + id;
+            dbCommand.CommandText = "SELECT * FROM " + entityType.Name + " WHERE Id=@Id";
+            dbCommand.Parameters.Add(new SqlParameter("Id", id));
 
             using (var reader = dbCommand.ExecuteReader(CommandBehavior.CloseConnection))
             {

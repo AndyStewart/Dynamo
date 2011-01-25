@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Dynamo.Commands
@@ -23,7 +27,14 @@ namespace Dynamo.Commands
             foreach (var property in entity.Properties.Where(q => q.PropertyType != PropertyType.HasMany))
             {
                 columnNameString += property.ColumnName + ",";
-                valueString += ValueEncode(property.Value) + ",";
+                valueString += "@" + property.PropertyName + ",";
+
+                var value = property.Value;
+                var propertyEntity = property.Value as Entity;
+                if (propertyEntity != null)
+                    value = propertyEntity.Self.Id;
+
+                dbCommand.Parameters.Add(new SqlParameter("@" + property.PropertyName, value ?? DBNull.Value));
             }
 
             columnNameString = columnNameString.TrimEnd(',');
@@ -34,23 +45,6 @@ namespace Dynamo.Commands
             dbCommand.CommandText = sqlString;
 
             ((dynamic) entity).Id = Convert.ToInt32(dbCommand.ExecuteScalar());
-        }
-
-        private static string ValueEncode(object value)
-        {
-            var entity = value as Entity;
-            if (entity != null)
-                return entity.Self.Id.ToString();
-
-            if (value == null)
-                return "null";
-
-            var valueType = value.GetType();
-
-            if (valueType == typeof(string))
-                return "'" + value + "'";
-
-            return value.ToString();
         }
     }
 }

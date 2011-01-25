@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace Dynamo.Commands
 {
@@ -13,7 +14,8 @@ namespace Dynamo.Commands
 
         public void Execute(IDbCommand dbCommand)
         {
-            dbCommand.CommandText = "DELETE FROM " + entity.GetType().Name + " WHERE Id=" + entity.Self.Id;
+            dbCommand.CommandText = "DELETE FROM " + entity.GetType().Name + " WHERE Id=@Id";
+            dbCommand.Parameters.Add(new SqlParameter("@Id", entity.Self.Id));
             dbCommand.ExecuteNonQuery();
         }
     }
