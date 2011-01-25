@@ -88,13 +88,7 @@ namespace Dynamo
 
             if (property.Type == PropertyType.BelongsTo)
             {
-                property.Value = ((dynamic) value);
-                return true;
-            }
-
-            if (property.Type == PropertyType.HasMany)
-            {
-                Repository.Save((Entity) value);
+                property.Value = value;
                 return true;
             }
 
