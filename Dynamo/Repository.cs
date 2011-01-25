@@ -13,14 +13,14 @@ namespace Dynamo
 
         private IDbProvider dbProvider = new SqlProvider(ConnectionString);
 
-        public IList<dynamic> FindBySql(string sqlString)
+        public IList<object> FindBySql(string sqlString, object parameters = null)
         {
-            return FindBySql<Entity>(sqlString);
+            return FindBySql<Entity>(sqlString, parameters);
         }
 
-        public IList<dynamic> FindBySql<T>(string sqlString) where T : Entity
+        public IList<dynamic> FindBySql<T>(string sqlString, object parameters = null) where T : Entity
         {
-            using (var reader = dbProvider.ExecuteReader(sqlString))
+            using (var reader = dbProvider.ExecuteReader(sqlString, parameters))
             {
                 var results = new List<dynamic>();
                 if (reader == null)
@@ -31,6 +31,7 @@ namespace Dynamo
                     var entity = (IEntity)Activator.CreateInstance<T>();
                     entity.Repository = this;
                     entity.Populate(reader);
+
                     results.Add(entity);
                 }
                 return results;

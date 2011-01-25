@@ -34,7 +34,7 @@ namespace Dynamo.Specs
                              andyContact.Company = company;
                              repository.Save(andyContact);
 
-                             contact = repository.FindBySql("Select Contact.Id, Contact.FirstName, Company.Name from Contact inner join Company on (Company.Id=Contact.Company_Id)");
+                             contact = repository.FindBySql("Select Contact.Id, Contact.FirstName, Company.Name from Contact inner join Company on (Company.Id=Contact.Company_Id) Where Company.Id=@Id", new { Id=company.Id});
                          };
 
         It should_return_values_from_contact_table = () => ((string)contact[0].FirstName).ShouldEqual("Andy");

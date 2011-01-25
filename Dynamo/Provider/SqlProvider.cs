@@ -14,9 +14,16 @@ namespace Dynamo.Provider
             this.connectionString = connectionString;
         }
 
-        public IDataReader ExecuteReader(string sql)
+        public IDataReader ExecuteReader(string sql, object parameters)
         {
-            return CreateCommand(sql).ExecuteReader(CommandBehavior.CloseConnection);
+            var command = CreateCommand(sql);
+
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters.GetType().GetProperties())
+                    command.Parameters.Add(new SqlParameter("@" + parameter.Name, parameter.GetValue(parameters, null)));
+            }
+            return command.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         private SqlCommand CreateCommand(string sql)

@@ -5,8 +5,8 @@ namespace Dynamo
 {
     public interface IRepository
     {
-        IList<object> FindBySql(string sqlString);
-        IList<object> FindBySql<T>(string sqlString) where T : Entity;
+        IList<object> FindBySql(string sqlString, object parameters = null);
+        IList<object> FindBySql<T>(string sqlString, object parameters = null) where T : Entity;
         void Save(Entity entity);
         T GetById<T>(int id) where T : Entity;
         void Delete<T>(T entity) where T : Entity;
