@@ -74,5 +74,11 @@ namespace Dynamo
             dbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
 
+        public IList<dynamic> Find<T>(string condition, object paramaters = null) where T : Entity
+        {
+            var command = new FindCommand<T>(condition, paramaters);
+            dbProvider.ExecuteCommand(command);
+            return command.Result.Cast<dynamic>().ToList();
+        }
     }
 }

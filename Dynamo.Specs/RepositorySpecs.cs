@@ -1,4 +1,6 @@
-﻿using Dynamo.Specs.Fixtures;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
 
 namespace Dynamo.Specs
@@ -118,6 +120,66 @@ namespace Dynamo.Specs
         It Should_return_null_when_querying_for_deleted_entity = () => ((object)repository.GetById<Contact>(contact.Id)).ShouldBeNull();
 
         private static dynamic contact;
+    }
+
+    public class When_a_find_is_performed_by_a_single_column_without_parameters : with_fresh_database
+    {
+        Because of = () =>
+                         {
+                             contact = new Contact();
+                             contact.FirstName = "Andy";
+                             contact.Surname = "Stewart";
+                             repository.Save(contact);
+
+                             contact = new Contact();
+                             contact.FirstName = "Bob";
+                             contact.Surname = "Stewart";
+                             repository.Save(contact);
+
+                             contact = new Contact();
+                             contact.FirstName = "Andy";
+                             contact.Surname = "Smith";
+                             repository.Save(contact);
+
+                             results = repository.Find<Contact>("FirstName='Andy'");
+                         };
+
+        private static dynamic contact;
+
+        It should_return_2_records = () => results.Count.ShouldEqual(2);
+        It should_return_first_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Stewart").ShouldBeTrue();
+        It should_return_second_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Smith").ShouldBeTrue();
+        private static IList<dynamic> results; 
+    }
+
+    public class When_a_find_is_performed_by_a_single_column_with_one_parameter : with_fresh_database
+    {
+        Because of = () =>
+        {
+            contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            contact = new Contact();
+            contact.FirstName = "Bob";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Smith";
+            repository.Save(contact);
+
+            results = repository.Find<Contact>("FirstName=@FirstName", new { FirstName="Andy"});
+        };
+
+        private static dynamic contact;
+
+        It should_return_2_records = () => results.Count.ShouldEqual(2);
+        It should_return_first_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Stewart").ShouldBeTrue();
+        It should_return_second_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Smith").ShouldBeTrue();
+        private static IList<dynamic> results;
     }
 
     public class with_fresh_database

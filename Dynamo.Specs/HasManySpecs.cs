@@ -5,7 +5,7 @@ namespace Dynamo.Specs
 {
     public class When_adding_an_entity_to_a_has_many_relationship : with_fresh_database
     {
-        private Because of = () =>
+        Because of = () =>
                                  {
                                      company = new Company();
                                      company.Name = "";

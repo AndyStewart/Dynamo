@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CollectionProxy.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\FindCommand.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Commands\FindByIdCommand.cs" />
     <Compile Include="Commands\ISqlCommand.cs" />
