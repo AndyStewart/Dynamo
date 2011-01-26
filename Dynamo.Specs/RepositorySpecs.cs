@@ -246,7 +246,7 @@ namespace Dynamo.Specs
             repository = new Repository();
         };
 
-        public static Repository repository;
+        public static IRepository repository;
 
     }
 }
