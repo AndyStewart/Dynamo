@@ -238,7 +238,36 @@ namespace Dynamo.Specs
         static IEnumerable<dynamic> results;
     }
 
-    public class When_a_find_is_performed_using_a_magic_query : with_fresh_database
+    public class When_a_find_is_performed_using_a_dynamic_finder_with_one_conditions_and_order_applied : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Bob";
+            contact2.Surname = "Stewart";
+            repository.Save(contact2);
+
+            dynamic contact3 = new Contact();
+            contact3.FirstName = "Andy";
+            contact3.Surname = "Smith";
+            repository.Save(contact3);
+
+            results = repository.DynamicFind<Contact>().ByFirstName("Andy").OrderBy("Surname").ToList();
+        };
+
+        It should_return_1_records = () => results.Count().ShouldEqual(2);
+        It should_return_correct_firstname = () => ((string)results[0].Surname).ShouldEqual("Smith");
+        It should_return_correct_surname = () => ((string)results[1].Surname).ShouldEqual("Stewart");
+
+        static IList<dynamic> results;
+    }
+
+    public class When_a_find_is_performed_using_a_dynamic_finder_with_two_conditions : with_fresh_database
     {
         Because of = () =>
         {
