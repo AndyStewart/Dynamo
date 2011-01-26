@@ -97,10 +97,7 @@ namespace Dynamo
 
             Condition = Condition.Substring(0, Condition.Length - 4);
 
-            var command = new FindCommand<T>(this);
-            dbProvider.ExecuteCommand(command);
-
-            result = command.Result;
+            result = this;
             return true;
         }
     }

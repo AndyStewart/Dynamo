@@ -257,14 +257,14 @@ namespace Dynamo.Specs
             contact3.Surname = "Smith";
             repository.Save(contact3);
 
-            results = repository.DynamicFind<Contact>().ByFirstNameAndSurname("Andy", "Stewart");
+            results = repository.DynamicFind<Contact>().ByFirstNameAndSurname("Andy", "Stewart").ToList();
         };
 
         It should_return_1_records = () => results.Count().ShouldEqual(1);
-        It should_return_correct_firstname = () => ((string)results.ToList()[0].FirstName).ShouldEqual("Andy");
-        It should_return_correct_surname = () => ((string)results.ToList()[0].Surname).ShouldEqual("Stewart");
+        It should_return_correct_firstname = () => ((string)results[0].FirstName).ShouldEqual("Andy");
+        It should_return_correct_surname = () => ((string)results[0].Surname).ShouldEqual("Stewart");
 
-        static IEnumerable<dynamic> results;
+        static IList<dynamic> results;
     }
 
     public class with_fresh_database
