@@ -23,8 +23,8 @@ namespace Dynamo.Commands
 
             if (query.ConditionParamaters!= null)
             {
-                foreach (var property in query.ConditionParamaters.GetType().GetProperties())
-                    dbCommand.Parameters.Add(new SqlParameter("@" + property.Name, property.GetValue(query.ConditionParamaters, null)));
+                foreach (var property in query.ConditionParamaters)
+                    dbCommand.Parameters.Add(new SqlParameter("@" + property.Key, property.Value));
             }
 
             if (!String.IsNullOrEmpty(query.OrderClause))
@@ -35,7 +35,7 @@ namespace Dynamo.Commands
             {
                 while(reader.Read())
                 {
-                    T entity = Activator.CreateInstance<T>();
+                    var entity = Activator.CreateInstance<T>();
                     entity.Populate(reader);
                     Result.Add(entity);
                 }

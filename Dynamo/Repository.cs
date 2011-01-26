@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using Dynamo;
 using Dynamo.Commands;
 using Dynamo.Provider;
 
@@ -10,9 +8,12 @@ namespace Dynamo
 {
     public class Repository : IRepository
     {
-        private const string ConnectionString = @"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True";
+        private readonly IDbProvider dbProvider;
 
-        private IDbProvider dbProvider = new SqlProvider(ConnectionString);
+        public Repository(string connectionString)
+        {
+            dbProvider = new SqlProvider(connectionString);
+        }
 
         public IList<object> FindBySql(string sqlString, object parameters = null)
         {
@@ -80,6 +81,11 @@ namespace Dynamo
             var query = new Query<T>(dbProvider);
             query.Where(condition, paramaters);
             return query;
+        }
+
+        public dynamic DynamicFind<T>() where T : Entity
+        {
+            return new Query<T>(dbProvider);
         }
     }
 }

@@ -210,7 +210,7 @@ namespace Dynamo.Specs
         static IList<dynamic> results;
     }
 
-    public class When_a_find_is_performed_by_a_single_column_with_multiple_parameters_and_ordered : with_fresh_database
+    public class When_a_find_is_performed_by_a_single_column_with_single_parameter_and_ordered : with_fresh_database
     {
         Because of = () =>
         {
@@ -238,12 +238,41 @@ namespace Dynamo.Specs
         static IEnumerable<dynamic> results;
     }
 
+    public class When_a_find_is_performed_using_a_magic_query : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Bob";
+            contact2.Surname = "Stewart";
+            repository.Save(contact2);
+
+            dynamic contact3 = new Contact();
+            contact3.FirstName = "Andy";
+            contact3.Surname = "Smith";
+            repository.Save(contact3);
+
+            results = repository.DynamicFind<Contact>().ByFirstNameAndSurname("Andy", "Stewart");
+        };
+
+        It should_return_1_records = () => results.Count().ShouldEqual(1);
+        It should_return_correct_firstname = () => ((string)results.ToList()[0].FirstName).ShouldEqual("Andy");
+        It should_return_correct_surname = () => ((string)results.ToList()[0].Surname).ShouldEqual("Stewart");
+
+        static IEnumerable<dynamic> results;
+    }
+
     public class with_fresh_database
     {
         Establish context = () =>
         {
             TestDatabase.Initialise();
-            repository = new Repository();
+            repository = new Repository(@"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True");
         };
 
         public static IRepository repository;
