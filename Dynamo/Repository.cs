@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Dynamo;
 using Dynamo.Commands;
 using Dynamo.Provider;
@@ -74,11 +75,11 @@ namespace Dynamo
             dbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
 
-        public IList<dynamic> Find<T>(string condition, object paramaters = null) where T : Entity
+        public Query<T> Find<T>(string condition, object paramaters = null) where T : Entity
         {
-            var command = new FindCommand<T>(condition, paramaters);
-            dbProvider.ExecuteCommand(command);
-            return command.Result.Cast<dynamic>().ToList();
+            var query = new Query<T>(dbProvider);
+            query.Where(condition, paramaters);
+            return query;
         }
     }
 }
