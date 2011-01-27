@@ -11,7 +11,7 @@ namespace Dynamo
         T GetById<T>(int id) where T : Entity;
         void Delete<T>(T entity) where T : Entity;
         object GetById(Type entityType, int id);
-        Query<T> Find<T>(string condition, object paramaters = null) where T : Entity;
+        Query<T> Find<T>() where T : Entity;
         dynamic DynamicFind<T>() where T : Entity;
     }
 }

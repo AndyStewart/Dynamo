@@ -76,11 +76,9 @@ namespace Dynamo
             dbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
 
-        public Query<T> Find<T>(string condition, object paramaters = null) where T : Entity
+        public Query<T> Find<T>() where T : Entity
         {
-            var query = new Query<T>(dbProvider);
-            query.Where(condition, paramaters);
-            return query;
+            return new Query<T>(dbProvider);
         }
 
         public dynamic DynamicFind<T>() where T : Entity

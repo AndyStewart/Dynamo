@@ -21,15 +21,24 @@ namespace Dynamo
         public Dictionary<string, object> ConditionParamaters { get; set; }
         public string Condition { get; set; }
 
-        public void Where(string condition, object paramaters)
+        public Query<T> Where(string condition = null, object paramaters = null)
         {
             Condition = condition;
 
             ConditionParamaters = new Dictionary<string, object>();
-            if (paramaters == null) return;
+            if (paramaters == null) return this;
 
+
+            var generateCondition = String.IsNullOrEmpty(condition);
             foreach (var paramater in paramaters.GetType().GetProperties())
+            {
+                if (generateCondition )
+                    Condition = paramater.Name + "=@" + paramater.Name;
+                
                 ConditionParamaters.Add("@" + paramater.Name, paramater.GetValue(paramaters, null));
+            }
+
+            return this;
         }
 
         public IList<dynamic> ToList()

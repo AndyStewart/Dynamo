@@ -18,13 +18,17 @@ namespace Dynamo.Commands
         {
             Result = new List<T>();
 
-            var sqlString = "SELECT * FROM " + typeof (T).Name + " Where " + query.Condition;
+            var sqlString = "SELECT * FROM " + typeof (T).Name;
+
+            if (!String.IsNullOrEmpty(query.Condition))
+                sqlString += " Where " + query.Condition;
+            
             dbCommand.CommandText = sqlString;
 
             if (query.ConditionParamaters!= null)
             {
                 foreach (var property in query.ConditionParamaters)
-                    dbCommand.Parameters.Add(new SqlParameter("@" + property.Key, property.Value));
+                    dbCommand.Parameters.Add(new SqlParameter(property.Key, property.Value));
             }
 
             if (!String.IsNullOrEmpty(query.OrderClause))
