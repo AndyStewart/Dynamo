@@ -43,10 +43,22 @@ namespace Dynamo
 
         public IList<dynamic> ToList()
         {
+            Mode = QueryMode.Queries;
             return ExecuteQuery().Cast<dynamic>().ToList();
         }
 
-        private IEnumerable<T> ExecuteQuery()
+
+        public int Count(string property)
+        {
+            Mode = QueryMode.Count;
+            return ExecuteQuery().Cast<int>().First();
+        }
+
+        public QueryMode Mode { get; set; }
+
+        public string CountProperty { get; set; }
+
+        private IEnumerable ExecuteQuery()
         {
             var command = new FindCommand<T>(this);
             dbProvider.ExecuteCommand(command);
@@ -109,5 +121,12 @@ namespace Dynamo
             result = this;
             return true;
         }
+
+    }
+
+    public enum QueryMode
+    {
+        Count,
+        Queries
     }
 }

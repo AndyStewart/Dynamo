@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,9 +17,21 @@ namespace Dynamo.Commands
 
         public void Execute(IDbCommand dbCommand)
         {
-            Result = new List<T>();
+            Result = new ArrayList();
 
-            var sqlString = "SELECT * FROM " + typeof (T).Name;
+            var sqlString = "SELECT ";
+
+            if (query.Mode == QueryMode.Count)
+            {
+                sqlString += "Count(*) ";
+            }
+            else
+            {
+                sqlString += typeof (T).Name + ".* ";
+            }
+
+
+            sqlString += "FROM " + typeof (T).Name;
 
             if (!String.IsNullOrEmpty(query.Condition))
                 sqlString += " Where " + query.Condition;
@@ -39,13 +52,24 @@ namespace Dynamo.Commands
             {
                 while(reader.Read())
                 {
-                    var entity = Activator.CreateInstance<T>();
-                    entity.Populate(reader);
-                    Result.Add(entity);
+                    switch (query.Mode)
+                    {
+                        case QueryMode.Count:
+                            Result.Add(reader[0]);
+                            return;
+                        case QueryMode.Queries:
+                            var entity = Activator.CreateInstance<T>();
+                            entity.Populate(reader);
+                            Result.Add(entity);
+                            break;
+                            
+
+                    }
+
                 }
             }
         }
 
-        public IList<T> Result { get; set; }
+        public ArrayList Result { get; set; }
     }
 }

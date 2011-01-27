@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
 
@@ -352,6 +349,29 @@ namespace Dynamo.Specs
         It should_return_correct_surname = () => ((string)results[0].Surname).ShouldEqual("Stewart");
 
         static IList<dynamic> results;
+    }
+
+    public class When_a_find_is_used_but_returns_a_count : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Bob";
+            contact2.Surname = "Stewart";
+            repository.Save(contact2);
+
+            dynamic contact3 = new Contact();
+            contact3.FirstName = "Andy";
+            contact3.Surname = "Smith";
+            repository.Save(contact3);
+        };
+
+        It Should_return_correct_count_of_records = () => repository.Find<Contact>().Count("FirstName").ShouldEqual(3);
     }
 
     public class with_fresh_database
