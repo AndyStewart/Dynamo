@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using Dynamo.Commands;
 
@@ -56,5 +57,7 @@ namespace Dynamo.Provider
             sqlCommand.Execute(CreateCommand(null));
             sqlConnection.Close();
         }
+
+        public int QueryCount { get; private set;}
     }
 }   

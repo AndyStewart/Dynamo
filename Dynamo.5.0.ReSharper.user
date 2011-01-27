@@ -3,6 +3,7 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
@@ -10,8 +11,48 @@
     <RecentFiles>
       <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="773" fromTop="15" />
       <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:licence.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?licence.txt" caret="0" fromTop="0" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="908" fromTop="27" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IRepository.cs" caret="524" fromTop="12" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="2118" fromTop="37" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="635" fromTop="9" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Repository.cs" caret="361" fromTop="15" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:IDbProvider.cs" caret="354" fromTop="10" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="1833" fromTop="25" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="15542" fromTop="25" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="621" fromTop="16" />
     </RecentFiles>
-    <RecentEdits />
+    <RecentEdits>
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="919" fromTop="17" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="5706" fromTop="8" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="0" fromTop="0" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="16229" fromTop="37" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="16993" fromTop="41" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="760" fromTop="25" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="703" fromTop="27" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="16795" fromTop="41" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="1643" fromTop="29" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="3767" fromTop="53" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="2019" fromTop="50" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="1926" fromTop="48" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="2090" fromTop="31" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="471" fromTop="14" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="1661" fromTop="27" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="1755" fromTop="25" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="1918" fromTop="29" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="1611" fromTop="18" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="612" fromTop="7" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="691" fromTop="8" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="1466" fromTop="31" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="15581" fromTop="44" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="15173" fromTop="26" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Repository.cs" caret="385" fromTop="15" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:IDbProvider.cs" caret="354" fromTop="10" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="15758" fromTop="30" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="16103" fromTop="38" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:RepositorySpecs.cs" caret="16004" fromTop="34" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="157" fromTop="6" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="1806" fromTop="24" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -26,53 +67,96 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="with_fresh_database`0" priority="0" />
-      <Item value="repository" priority="2" />
-      <Item value="var" priority="3" />
-      <Item value="new" priority="4" />
+      <Item value="with_fresh_database`0" priority="1" />
+      <Item value="repository" priority="8" />
+      <Item value="var" priority="11" />
+      <Item value="new" priority="10" />
       <Item value="Company`0" priority="2" />
-      <Item value="public" priority="0" />
-      <Item value="class" priority="0" />
+      <Item value="public" priority="1" />
+      <Item value="class" priority="1" />
       <Item value="ctor" priority="1" />
       <Item value="func" priority="1" />
-      <Item value="dynamic" priority="1" />
-      <Item value="company" priority="2" />
-      <Item value="contact" priority="2" />
+      <Item value="dynamic" priority="2" />
+      <Item value="company" priority="5" />
+      <Item value="contact" priority="5" />
       <Item value="Behaves_like" priority="0" />
-      <Item value="It`0" priority="0" />
-      <Item value="Contact`0" priority="0" />
+      <Item value="It`0" priority="1" />
+      <Item value="Contact`0" priority="1" />
       <Item value="Self" priority="0" />
-      <Item value="override" priority="0" />
+      <Item value="override" priority="1" />
       <Item value="BelongsTo`0" priority="1" />
-      <Item value="List" priority="0" />
+      <Item value="List" priority="3" />
       <Item value="Relationship`0" priority="1" />
       <Item value="enum" priority="0" />
       <Item value="Relationships" priority="3" />
       <Item value="propertyName" priority="1" />
-      <Item value="if" priority="4" />
-      <Item value="q" priority="3" />
-      <Item value="binder" priority="3" />
+      <Item value="if" priority="16" />
+      <Item value="q" priority="5" />
+      <Item value="binder" priority="4" />
       <Item value="result" priority="3" />
-      <Item value="value" priority="1" />
+      <Item value="value" priority="2" />
       <Item value="null" priority="1" />
-      <Item value="Queryable`0" priority="0" />
-      <Item value="return" priority="2" />
+      <Item value="Queryable`0" priority="1" />
+      <Item value="return" priority="9" />
       <Item value="findRelationship" priority="6" />
       <Item value="DbProvider" priority="0" />
       <Item value="IRepository`0" priority="0" />
       <Item value="Properties" priority="3" />
-      <Item value="true" priority="0" />
-      <Item value="int" priority="0" />
+      <Item value="true" priority="1" />
+      <Item value="int" priority="1" />
       <Item value="GetById`0" priority="0" />
-      <Item value="T`0" priority="0" />
-      <Item value="typeof" priority="0" />
+      <Item value="T`0" priority="1" />
+      <Item value="typeof" priority="2" />
       <Item value="entityType" priority="0" />
       <Item value="BelongsTo" priority="0" />
-      <Item value="this" priority="3" />
+      <Item value="this" priority="5" />
       <Item value="Where`1" priority="0" />
       <Item value="FirstOrDefault`1" priority="0" />
-      <Item value="else" priority="1" />
+      <Item value="else" priority="2" />
       <Item value="DBNull`0" priority="0" />
+      <Item value="OrderClause" priority="0" />
+      <Item value="Char`0" priority="1" />
+      <Item value="foreach" priority="2" />
+      <Item value="wordSoFar" priority="2" />
+      <Item value="charactor" priority="2" />
+      <Item value="string" priority="1" />
+      <Item value="words" priority="1" />
+      <Item value="Object`0" priority="0" />
+      <Item value="Dictionary" priority="0" />
+      <Item value="object" priority="0" />
+      <Item value="Dictionary&lt;string,object&gt;" priority="1" />
+      <Item value="Condition" priority="3" />
+      <Item value="paramater" priority="4" />
+      <Item value="paramaters" priority="0" />
+      <Item value="word" priority="1" />
+      <Item value="for" priority="0" />
+      <Item value="conditionWords" priority="2" />
+      <Item value="i" priority="1" />
+      <Item value="ConditionParamaters" priority="0" />
+      <Item value="args" priority="0" />
+      <Item value="Length" priority="0" />
+      <Item value="conditionWord" priority="6" />
+      <Item value="Microsoft" priority="0" />
+      <Item value="ParallelEnumerable`0" priority="0" />
+      <Item value="ParameterExpression`0" priority="0" />
+      <Item value="String`0" priority="3" />
+      <Item value="condition" priority="0" />
+      <Item value="query" priority="5" />
+      <Item value="sqlString" priority="2" />
+      <Item value="ShouldEqual`1" priority="0" />
+      <Item value="ExecuteQuery`0" priority="0" />
+      <Item value="InvalidCastException`0" priority="0" />
+      <Item value="property" priority="0" />
+      <Item value="Type`0" priority="0" />
+      <Item value="GCCollectionMode`0" priority="0" />
+      <Item value="switch" priority="0" />
+      <Item value="case" priority="0" />
+      <Item value="QueryMode`0" priority="0" />
+      <Item value="break" priority="1" />
+      <Item value="reader" priority="1" />
+      <Item value="ArrayList`0" priority="1" />
+      <Item value="sqlCount" priority="0" />
+      <Item value="results" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Repository">
       <Item value="Save`0" priority="1" />
@@ -87,6 +171,11 @@
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="ConvertAll`1" priority="0" />
       <Item value="FirstOrDefault`1" priority="0" />
+      <Item value="Add`0" priority="2" />
+      <Item value="Where`1" priority="0" />
+      <Item value="Count" priority="1" />
+      <Item value="Remove`0" priority="0" />
+      <Item value="RemoveAt`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Relationship">
       <Item value="Property" priority="3" />
@@ -102,6 +191,9 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.IRepository">
       <Item value="GetById`1" priority="0" />
+      <Item value="Find`1" priority="2" />
+      <Item value="Save`0" priority="0" />
+      <Item value="DbProvider" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Int32">
       <Item value="ShouldEqual`1" priority="0" />
@@ -111,7 +203,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Type">
       <Item value="Assembly" priority="1" />
-      <Item value="Name" priority="0" />
+      <Item value="Name" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Reflection.Assembly">
       <Item value="GetType`0" priority="0" />
@@ -125,9 +217,69 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.Dictionary`2">
       <Item value="ContainsKey`0" priority="0" />
+      <Item value="Add`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.DBNull">
       <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Query`1">
+      <Item value="Where`0" priority="6" />
+      <Item value="Condition" priority="0" />
+      <Item value="Count`0" priority="1" />
+      <Item value="CountProperty" priority="1" />
+      <Item value="Mode" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Dynamic.InvokeMemberBinder">
+      <Item value="Name" priority="0" />
+      <Item value="CallInfo" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="Split`0" priority="0" />
+      <Item value="Aggregate`3" priority="1" />
+      <Item value="TrimEnd`0" priority="0" />
+      <Item value="Substring`0" priority="0" />
+      <Item value="LastIndexOf`0" priority="0" />
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Char">
+      <Item value="IsUpper`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair`2">
+      <Item value="Key" priority="0" />
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToArray`1" priority="0" />
+      <Item value="FirstOrDefault`1" priority="1" />
+      <Item value="ToList`1" priority="0" />
+      <Item value="First`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="IsNullOrEmpty`0" priority="2" />
+      <Item value="Format`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.PropertyInfo">
+      <Item value="Name" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Dynamo.QueryMode">
+      <Item value="Count" priority="1" />
+      <Item value="Queries" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IList`1">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.ArrayList">
+      <Item value="Cast`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.IEnumerable">
+      <Item value="Equals`0" priority="0" />
+      <Item value="Cast`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Object">
+      <Item value="FirstName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Dynamo.Provider.IDbProvider">
+      <Item value="QueryCount" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dynamo.Provider;
 
 namespace Dynamo
 {
@@ -13,5 +14,6 @@ namespace Dynamo
         object GetById(Type entityType, int id);
         Query<T> Find<T>() where T : Entity;
         dynamic DynamicFind<T>() where T : Entity;
+        IDbProvider DbProvider { get; }
     }
 }

@@ -8,13 +8,13 @@ namespace Dynamo
 {
     public class Repository : IRepository
     {
-        private readonly IDbProvider dbProvider;
 
         public Repository(string connectionString)
         {
-            dbProvider = new SqlProvider(connectionString);
+            DbProvider = new SqlProvider(connectionString);
         }
 
+        public IDbProvider DbProvider { get; private set; }
         public IList<object> FindBySql(string sqlString, object parameters = null)
         {
             return FindBySql<Entity>(sqlString, parameters);
@@ -22,7 +22,7 @@ namespace Dynamo
 
         public IList<dynamic> FindBySql<T>(string sqlString, object parameters = null) where T : Entity
         {
-            using (var reader = dbProvider.ExecuteReader(sqlString, parameters))
+            using (var reader = DbProvider.ExecuteReader(sqlString, parameters))
             {
                 var results = new List<dynamic>();
                 if (reader == null)
@@ -47,11 +47,11 @@ namespace Dynamo
 
             if (entity.Properties.Any(q =>  q.PropertyName == "Id"))
             {
-                dbProvider.ExecuteCommand(new UpdateCommand(entity));
+                DbProvider.ExecuteCommand(new UpdateCommand(entity));
                 return;
             }
 
-            dbProvider.ExecuteCommand(new InsertCommand(entity));
+            DbProvider.ExecuteCommand(new InsertCommand(entity));
         }
 
         public T GetById<T>(int id) where T : Entity
@@ -62,7 +62,7 @@ namespace Dynamo
         public object GetById(Type entityType, int id)
         {
             var command = new FindByIdCommand(entityType, id);
-            dbProvider.ExecuteCommand(command);
+            DbProvider.ExecuteCommand(command);
 
             if (command.Result != null)
                 command.Result.Repository = this;
@@ -73,17 +73,17 @@ namespace Dynamo
 
         public void Delete<T>(T entity) where T : Entity
         {
-            dbProvider.ExecuteCommand(new DeleteCommand(entity));
+            DbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
 
         public Query<T> Find<T>() where T : Entity
         {
-            return new Query<T>(dbProvider);
+            return new Query<T>(DbProvider);
         }
 
         public dynamic DynamicFind<T>() where T : Entity
         {
-            return new Query<T>(dbProvider);
+            return new Query<T>(DbProvider);
         }
     }
 }

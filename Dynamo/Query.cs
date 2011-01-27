@@ -47,7 +47,6 @@ namespace Dynamo
             return ExecuteQuery().Cast<dynamic>().ToList();
         }
 
-
         public int Count(string property)
         {
             Mode = QueryMode.Count;

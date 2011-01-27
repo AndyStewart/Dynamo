@@ -351,6 +351,33 @@ namespace Dynamo.Specs
         static IList<dynamic> results;
     }
 
+    public class When_a_find_is_performed_using_eager_loading  : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic contact = new Contact();
+            contact.FirstName = "Andy";
+            contact.Surname = "Stewart";
+            repository.Save(contact);
+
+            dynamic company = new Company();
+            company.Name = "New Name";
+            company.Contacts.Add(contact);
+            repository.Save(contact);
+
+            sqlCount = repository.DbProvider.QueryCount;
+            results = repository.Find<Contact>().Where("Andy", "Stewart").ToList();
+            eagerLoadedCompany = results[0].Company;
+        };
+
+        It Should_only_execute_one_query = () => (repository.DbProvider.QueryCount - sqlCount).ShouldEqual(1);
+        It Should_return_company = () => ((string)eagerLoadedCompany.Name).ShouldEqual("New Name");
+
+        static IList<dynamic> results;
+        static int sqlCount;
+        static dynamic eagerLoadedCompany;
+    }
+
     public class When_a_find_is_used_but_returns_a_count : with_fresh_database
     {
         Because of = () =>

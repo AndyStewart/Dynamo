@@ -9,5 +9,6 @@ namespace Dynamo.Provider
         object ExecuteScalar(string sql);
         void ExecuteNonQuery(string sql);
         void ExecuteCommand(ISqlCommand sqlCommand);
+        int QueryCount { get; }
     }
 }
