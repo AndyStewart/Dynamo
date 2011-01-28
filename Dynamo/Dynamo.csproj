@@ -46,6 +46,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Commands\FindByIdCommand.cs" />
     <Compile Include="Commands\ISqlCommand.cs" />
+    <Compile Include="IQuery.cs" />
     <Compile Include="Provider\IDbProvider.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Commands\InsertCommand.cs" />

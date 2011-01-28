@@ -45,7 +45,7 @@ namespace Dynamo
             if (entity.Repository == null)
                 entity.Repository = this;
 
-            if (entity.Properties.Any(q =>  q.PropertyName == "Id"))
+            if (entity.Properties.Any(q =>  q.PropertyName == "Id" && q.Value != null))
             {
                 DbProvider.ExecuteCommand(new UpdateCommand(entity));
                 return;

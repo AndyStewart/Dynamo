@@ -24,7 +24,7 @@ namespace Dynamo.Commands
 
             var columnNameString = "";
             var valueString = "";
-            foreach (var property in entity.Properties.Where(q => q.PropertyType != PropertyType.HasMany))
+            foreach (var property in entity.Properties.Where(q => q.PropertyType != PropertyType.HasMany && q.PropertyName != "Id"))
             {
                 columnNameString += property.ColumnName + ",";
                 valueString += "@" + property.PropertyName + ",";

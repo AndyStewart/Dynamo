@@ -30,7 +30,6 @@ namespace Dynamo.Commands
                 sqlString += typeof (T).Name + ".* ";
             }
 
-
             sqlString += "FROM " + typeof (T).Name;
 
             if (!String.IsNullOrEmpty(query.Condition))

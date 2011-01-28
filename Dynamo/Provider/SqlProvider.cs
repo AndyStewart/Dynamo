@@ -17,6 +17,7 @@ namespace Dynamo.Provider
 
         public IDataReader ExecuteReader(string sql, object parameters)
         {
+            QueryCount++;
             var command = CreateCommand(sql);
 
             if (parameters != null)
@@ -41,6 +42,7 @@ namespace Dynamo.Provider
 
         public object ExecuteScalar(string sql)
         {
+            QueryCount++;
             var value = CreateCommand(sql).ExecuteScalar();
             sqlConnection.Close();
             return value;
@@ -48,12 +50,14 @@ namespace Dynamo.Provider
 
         public void ExecuteNonQuery(string sql)
         {
+            QueryCount++;
             CreateCommand(sql).ExecuteNonQuery();
             sqlConnection.Close();
         }
 
         public void ExecuteCommand(ISqlCommand sqlCommand)
         {
+            QueryCount++;
             sqlCommand.Execute(CreateCommand(null));
             sqlConnection.Close();
         }

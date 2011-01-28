@@ -355,22 +355,29 @@ namespace Dynamo.Specs
     {
         Because of = () =>
         {
-            dynamic contact = new Contact();
-            contact.FirstName = "Andy";
-            contact.Surname = "Stewart";
-            repository.Save(contact);
-
             dynamic company = new Company();
             company.Name = "New Name";
-            company.Contacts.Add(contact);
-            repository.Save(contact);
+            repository.Save(company);
+
+            dynamic contact1 = new Contact();
+            contact1.FirstName = "Andy";
+            contact1.Surname = "Stewart";
+            company.Contacts.Add(contact1);
+
+            dynamic contact2 = new Contact();
+            contact2.FirstName = "Andy";
+            contact2.Surname = "Stewart";
+            company.Contacts.Add(contact2);
 
             sqlCount = repository.DbProvider.QueryCount;
-            results = repository.Find<Contact>().Where("Andy", "Stewart").ToList();
+            results = repository.Find<Contact>()
+                                .Include<Company>()
+                                .ToList();
+
             eagerLoadedCompany = results[0].Company;
         };
 
-        It Should_only_execute_one_query = () => (repository.DbProvider.QueryCount - sqlCount).ShouldEqual(1);
+        It Should_only_execute_two_queries = () => (repository.DbProvider.QueryCount - sqlCount).ShouldEqual(2);
         It Should_return_company = () => ((string)eagerLoadedCompany.Name).ShouldEqual("New Name");
 
         static IList<dynamic> results;

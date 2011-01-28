@@ -27,7 +27,9 @@ namespace Dynamo.Commands
                 
 
             sqlString = sqlString.TrimEnd(',');
-            sqlString += " WHERE Id=" + entity.Self.Id;
+            sqlString += " WHERE Id=@Id";
+
+            dbCommand.Parameters.Add(new SqlParameter("@Id", entity.Self.Id));
 
             dbCommand.CommandText = sqlString;
             dbCommand.ExecuteNonQuery();

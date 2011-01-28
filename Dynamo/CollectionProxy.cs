@@ -8,14 +8,18 @@ namespace Dynamo
     public class CollectionProxy<T> : IList<T>  where T:Entity
     {
         private readonly Entity entity;
-        private IList<T> innerList;
+        private readonly IList<T> innerList;
 
         public CollectionProxy(Entity entity, Property hasManyProperty)
         {
             this.entity = entity;
 
             var entityType = hasManyProperty.Type.GetGenericArguments()[0];
-            innerList = ((IList<object>)entity.Repository.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
+
+            innerList = new List<T>();
+
+            if (entity.Repository != null)
+                innerList = ((IList<object>)entity.Repository.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
         }
 
 
@@ -31,7 +35,13 @@ namespace Dynamo
 
         public void Add(T item)
         {
-            entity.Repository.Save(item);
+            if (item.Self.Id == null)
+            {
+                var property = item.Properties.First(q => q.ColumnName == entity.GetType().Name + "_Id");
+                property.Value = entity.Self.Id;
+                entity.Repository.Save(item);
+            }
+
             innerList.Add(item);
         }
 

@@ -5,23 +5,25 @@ using System.Dynamic;
 using System.Linq;
 using Dynamo.Commands;
 using Dynamo.Provider;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Dynamo
 {
-    public class Query<T> : DynamicObject where T : Entity
+    public class Query<T> : DynamicObject, IQuery where T : Entity
     {
         private readonly IDbProvider dbProvider;
 
         public Query(IDbProvider dbProvider)
         {
             this.dbProvider = dbProvider;
+            EagerQueries = new List<IQuery>();
         }
 
         public string OrderClause { get; set; }
         public Dictionary<string, object> ConditionParamaters { get; set; }
         public string Condition { get; set; }
 
-        public Query<T> Where(string condition = null, object paramaters = null)
+        public IQuery Where(string condition = null, object paramaters = null)
         {
             Condition = condition;
 
@@ -32,10 +34,28 @@ namespace Dynamo
             var generateCondition = String.IsNullOrEmpty(condition);
             foreach (var paramater in paramaters.GetType().GetProperties())
             {
-                if (generateCondition )
-                    Condition = paramater.Name + "=@" + paramater.Name;
+                var value = paramater.GetValue(paramaters, null);
+                if (value is object[])
+                {
+                    var valueArray = (object[]) value;
+                    Condition = paramater.Name + " IN (";
+                    for (var count = 0; count < valueArray.Length; count++)
+                    {
+                        Condition += "@" + paramater.Name + count + ",";
+                        ConditionParamaters.Add("@" + paramater.Name + count, valueArray[count]);
+                    }
+                    Condition = Condition.TrimEnd(',');
+                    Condition += ")";
+                }
+                else
+                {
+                    if (generateCondition )
+                        Condition = paramater.Name + "=@" + paramater.Name;
+
+                    ConditionParamaters.Add("@" + paramater.Name, value);
+                }
                 
-                ConditionParamaters.Add("@" + paramater.Name, paramater.GetValue(paramaters, null));
+                
             }
 
             return this;
@@ -44,7 +64,20 @@ namespace Dynamo
         public IList<dynamic> ToList()
         {
             Mode = QueryMode.Queries;
-            return ExecuteQuery().Cast<dynamic>().ToList();
+            var result = ExecuteQuery();
+
+            foreach (var query in EagerQueries)
+            {
+                var ids = result.Cast<Entity>().Select(q => q.Self.Id).ToArray();
+                var eagerResult = query.Where(paramaters:new { Id = ids }).ToList();
+                var type = query.GetType().GetGenericArguments()[0];
+
+                foreach (var entity in result.Cast<Entity>())
+                {
+                    entity.Properties.First(q => q.PropertyName == type.Name).Value = eagerResult.FirstOrDefault();
+                }
+           }
+            return result.Cast<dynamic>().ToList();
         }
 
         public int Count(string property)
@@ -69,7 +102,7 @@ namespace Dynamo
             return ExecuteQuery().GetEnumerator();
         }
 
-        public Query<T> OrderBy(string orderClause)
+        public IQuery OrderBy(string orderClause)
         {
             OrderClause = orderClause;
             return this;
@@ -121,6 +154,13 @@ namespace Dynamo
             return true;
         }
 
+        public IQuery Include<T1>() where T1 : Entity
+        {
+            EagerQueries.Add(new Query<T1>(dbProvider));
+            return this;
+        }
+
+        public List<IQuery> EagerQueries { get; set; }
     }
 
     public enum QueryMode
