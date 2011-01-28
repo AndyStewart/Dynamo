@@ -5,7 +5,7 @@ namespace Dynamo
 {
     public interface IEntity
     {
-        IRepository Repository { get; set; }
+        ISession Session { get; set; }
         void Populate(IDataReader reader);
     }
 }

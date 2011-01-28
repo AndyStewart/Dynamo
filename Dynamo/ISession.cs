@@ -4,7 +4,7 @@ using Dynamo.Provider;
 
 namespace Dynamo
 {
-    public interface IRepository
+    public interface ISession
     {
         IList<object> FindBySql(string sqlString, object parameters = null);
         IList<object> FindBySql<T>(string sqlString, object parameters = null) where T : Entity;
@@ -15,5 +15,6 @@ namespace Dynamo
         Query<T> Find<T>() where T : Entity;
         dynamic DynamicFind<T>() where T : Entity;
         IDbProvider DbProvider { get; }
+        IList<CachedItem> Cache { get; }
     }
 }

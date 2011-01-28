@@ -48,7 +48,7 @@
     <Compile Include="Fixtures\TestDatabase.cs" />
     <Compile Include="BelongsToSpecs.cs" />
     <Compile Include="HasManySpecs.cs" />
-    <Compile Include="RepositorySpecs.cs" />
+    <Compile Include="SessionSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

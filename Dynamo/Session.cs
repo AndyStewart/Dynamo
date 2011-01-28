@@ -6,12 +6,14 @@ using Dynamo.Provider;
 
 namespace Dynamo
 {
-    public class Repository : IRepository
+    public class Session : ISession
     {
+        public IList<CachedItem> Cache { get; set; }
 
-        public Repository(string connectionString)
+        public Session(string connectionString)
         {
             DbProvider = new SqlProvider(connectionString);
+            Cache = new List<CachedItem>();
         }
 
         public IDbProvider DbProvider { get; private set; }
@@ -31,9 +33,8 @@ namespace Dynamo
                 while (reader.Read())
                 {
                     var entity = (IEntity)Activator.CreateInstance<T>();
-                    entity.Repository = this;
+                    entity.Session = this;
                     entity.Populate(reader);
-
                     results.Add(entity);
                 }
                 return results;
@@ -42,8 +43,8 @@ namespace Dynamo
 
         public void Save(Entity entity)
         {
-            if (entity.Repository == null)
-                entity.Repository = this;
+            if (entity.Session == null)
+                entity.Session = this;
 
             if (entity.Properties.Any(q =>  q.PropertyName == "Id" && q.Value != null))
             {
@@ -61,11 +62,11 @@ namespace Dynamo
 
         public object GetById(Type entityType, int id)
         {
-            var command = new FindByIdCommand(entityType, id);
+            var command = new FindByIdCommand(entityType, id, this);
             DbProvider.ExecuteCommand(command);
 
             if (command.Result != null)
-                command.Result.Repository = this;
+                command.Result.Session = this;
 
             return command.Result;
         }
@@ -78,12 +79,19 @@ namespace Dynamo
 
         public Query<T> Find<T>() where T : Entity
         {
-            return new Query<T>(DbProvider);
+            return new Query<T>(DbProvider, this);
         }
 
         public dynamic DynamicFind<T>() where T : Entity
         {
-            return new Query<T>(DbProvider);
+            return new Query<T>(DbProvider, this);
         }
+    }
+
+    public class CachedItem
+    {
+        public int Id { get; set; }
+        public Type Type { get; set; }
+        public Entity Value { get; set; }
     }
 }

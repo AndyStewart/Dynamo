@@ -5,7 +5,6 @@ using System.Dynamic;
 using System.Linq;
 using Dynamo.Commands;
 using Dynamo.Provider;
-using Microsoft.CSharp.RuntimeBinder;
 
 namespace Dynamo
 {
@@ -13,9 +12,10 @@ namespace Dynamo
     {
         private readonly IDbProvider dbProvider;
 
-        public Query(IDbProvider dbProvider)
+        public Query(IDbProvider dbProvider, Session Session)
         {
             this.dbProvider = dbProvider;
+            this.Session = Session;
             EagerQueries = new List<IQuery>();
         }
 
@@ -156,11 +156,13 @@ namespace Dynamo
 
         public IQuery Include<T1>() where T1 : Entity
         {
-            EagerQueries.Add(new Query<T1>(dbProvider));
+            EagerQueries.Add(new Query<T1>(dbProvider, Session));
             return this;
         }
 
         public List<IQuery> EagerQueries { get; set; }
+
+        public Session Session { get; set; }
     }
 
     public enum QueryMode

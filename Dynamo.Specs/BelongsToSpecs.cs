@@ -9,15 +9,15 @@ namespace Dynamo.Specs
                         {
                             company = new Company();
                             company.Name = "Company Name";
-                            repository.Save(company);
+                            Session.Save(company);
 
                             contact = new Contact();
                             contact.FirstName = "Andy";
                             contact.Company = company;
-                            repository.Save(contact);
+                            Session.Save(contact);
                         };
 
-        It should_correctly_store_the_entity_id_in_the_table = () => ((int)repository.GetById<Contact>(contact.Id).Company.Id).ShouldEqual((int)company.Id);
+        It should_correctly_store_the_entity_id_in_the_table = () => ((int)Session.GetById<Contact>(contact.Id).Company.Id).ShouldEqual((int)company.Id);
         
         static dynamic contact;
         static dynamic company;
@@ -29,13 +29,13 @@ namespace Dynamo.Specs
         {
             company = new Company();
             company.Name = "Company Name";
-            repository.Save(company);
+            Session.Save(company);
 
             contact = new Contact();
             contact.FirstName = "Andy";
             contact.Company = company;
-            repository.Save(contact);
-            dbContact = repository.GetById<Contact>(contact.Id);
+            Session.Save(contact);
+            dbContact = Session.GetById<Contact>(contact.Id);
         };
 
         It should_correctly_load_back_entity = () => ((int)dbContact.Company.Id).ShouldEqual((int)company.Id);
@@ -51,10 +51,10 @@ namespace Dynamo.Specs
         {
             contact = new Contact();
             contact.FirstName = "Andy";
-            repository.Save(contact);
+            Session.Save(contact);
         };
 
-        It should_return_null_when_company_isnt_set = () => ((Company)repository.GetById<Contact>(contact.Id).Company).ShouldBeNull();
+        It should_return_null_when_company_isnt_set = () => ((Company)Session.GetById<Contact>(contact.Id).Company).ShouldBeNull();
 
         static dynamic contact;
     }

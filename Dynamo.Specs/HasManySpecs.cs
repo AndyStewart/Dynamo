@@ -9,7 +9,7 @@ namespace Dynamo.Specs
                                  {
                                      company = new Company();
                                      company.Name = "";
-                                     repository.Save(company);
+                                     Session.Save(company);
 
                                      contact = new Contact();
                                      contact.FirstName = "Andy";
@@ -17,7 +17,7 @@ namespace Dynamo.Specs
                                  };
 
         It Should_save_and_set_the_id = () => ((int)contact.Id).ShouldNotEqual(0);
-        It Should_save_entire_entity = () => ((string)repository.GetById<Contact>(contact.Id).FirstName).ShouldEqual("Andy");
+        It Should_save_entire_entity = () => ((string)Session.GetById<Contact>(contact.Id).FirstName).ShouldEqual("Andy");
         It Should_return_entity_in_collection = () => ((int)company.Contacts[0].Id).ShouldEqual((int)contact.Id);
 
         private static dynamic contact;

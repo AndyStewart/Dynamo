@@ -11,9 +11,9 @@ namespace Dynamo.Specs
                                  {
                                      dynamic andyContact = new Contact();
                                      andyContact.FirstName = "Andy";
-                                     repository.Save(andyContact);
+                                     Session.Save(andyContact);
 
-                                     contact = repository.FindBySql<Contact>("Select * from Contact");
+                                     contact = Session.FindBySql<Contact>("Select * from Contact");
                                  };
 
         It should_return_values = () => ((string)contact[0].FirstName).ShouldEqual("Andy");
@@ -29,14 +29,14 @@ namespace Dynamo.Specs
                          {
                              dynamic company = new Company();
                              company.Name = "Company Name";
-                             repository.Save(company);
+                             Session.Save(company);
 
                              dynamic andyContact = new Contact();
                              andyContact.FirstName = "Andy";
                              andyContact.Company = company;
-                             repository.Save(andyContact);
+                             Session.Save(andyContact);
 
-                             contact = repository.FindBySql("Select Contact.Id, Contact.FirstName, Company.Name from Contact inner join Company on (Company.Id=Contact.Company_Id) Where Company.Id=@Id", new { Id=company.Id});
+                             contact = Session.FindBySql("Select Contact.Id, Contact.FirstName, Company.Name from Contact inner join Company on (Company.Id=Contact.Company_Id) Where Company.Id=@Id", new { Id=company.Id});
                          };
 
         It should_return_values_from_contact_table = () => ((string)contact[0].FirstName).ShouldEqual("Andy");
@@ -52,9 +52,9 @@ namespace Dynamo.Specs
                             contact = new Contact();
                             contact.FirstName = "First Name";
                             contact.Surname = "Surname";
-                            repository.Save(contact);
+                            Session.Save(contact);
 
-                            contactsFound = repository.GetById<Contact>(contact.Id);
+                            contactsFound = Session.GetById<Contact>(contact.Id);
                         };
 
         It Should_set_id = () => ((int)contactsFound.Id).ShouldNotEqual(0);
@@ -72,13 +72,13 @@ namespace Dynamo.Specs
                                     contact = new Contact();
                                     contact.FirstName = "First Name";
                                     contact.Surname = "Surname";
-                                    repository.Save(contact);
+                                    Session.Save(contact);
 
                                     contact.FirstName = "My New First Name";
                                     contact.Surname= "My New Surname";
-                                    repository.Save(contact);
+                                    Session.Save(contact);
 
-                                    contactsFound = repository.GetById<Contact>(contact.Id);
+                                    contactsFound = Session.GetById<Contact>(contact.Id);
                                 };
 
         It Should_set_id = () => ((int)contactsFound.Id).ShouldNotEqual(0);
@@ -95,9 +95,9 @@ namespace Dynamo.Specs
                                  {
                                      contact = new Contact();
                                      contact.FirstName = "Bob Dylan";
-                                     repository.Save(contact);
+                                     Session.Save(contact);
 
-                                     dbContact = repository.GetById<Contact>(contact.Id);
+                                     dbContact = Session.GetById<Contact>(contact.Id);
                                  };
 
         It Should_return_correct_entity_id = () => ((decimal)dbContact.Id).ShouldEqual((decimal)contact.Id);
@@ -113,11 +113,11 @@ namespace Dynamo.Specs
                                  {
                                      contact = new Contact();
                                      contact.FirstName = "Bob Dylan";
-                                     repository.Save(contact);
-                                     repository.Delete(contact);
+                                     Session.Save(contact);
+                                     Session.Delete(contact);
                                  };
 
-        It Should_return_null_when_querying_for_deleted_entity = () => ((object)repository.GetById<Contact>(contact.Id)).ShouldBeNull();
+        It Should_return_null_when_querying_for_deleted_entity = () => ((object)Session.GetById<Contact>(contact.Id)).ShouldBeNull();
 
         private static dynamic contact;
     }
@@ -129,19 +129,19 @@ namespace Dynamo.Specs
                              dynamic contact = new Contact();
                              contact.FirstName = "Andy";
                              contact.Surname = "Stewart";
-                             repository.Save(contact);
+                             Session.Save(contact);
 
                              dynamic contact2 = new Contact();
                              contact2.FirstName = "Bob";
                              contact2.Surname = "Stewart";
-                             repository.Save(contact2);
+                             Session.Save(contact2);
 
                              dynamic contact3 = new Contact();
                              contact3.FirstName = "Andy";
                              contact3.Surname = "Smith";
-                             repository.Save(contact3);
+                             Session.Save(contact3);
 
-                             results = repository.Find<Contact>().Where("FirstName='Andy'").ToList();
+                             results = Session.Find<Contact>().Where("FirstName='Andy'").ToList();
                          };
 
         private static dynamic contact;
@@ -159,19 +159,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.Find<Contact>().Where("FirstName=@FirstName", new { FirstName="Andy"}).ToList();
+            results = Session.Find<Contact>().Where("FirstName=@FirstName", new { FirstName="Andy"}).ToList();
         };
 
         It should_return_2_records = () => results.Count.ShouldEqual(2);
@@ -187,19 +187,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.Find<Contact>().Where("FirstName=@FirstName and Surname=@Surname", new { FirstName = "Andy", Surname="Stewart" }).ToList();
+            results = Session.Find<Contact>().Where("FirstName=@FirstName and Surname=@Surname", new { FirstName = "Andy", Surname="Stewart" }).ToList();
         };
 
         It should_return_1_records = () => results.Count.ShouldEqual(1);
@@ -214,19 +214,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.Find<Contact>()
+            results = Session.Find<Contact>()
                                 .Where(paramaters:new { FirstName = "Andy" }).OrderBy("Surname").ToList();
         };
 
@@ -243,19 +243,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.Find<Contact>()
+            results = Session.Find<Contact>()
                                 .OrderBy("Surname").ToList();
         };
 
@@ -272,19 +272,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.Find<Contact>().Where("FirstName=@FirstName", new { FirstName = "Andy" }).OrderBy("Surname").ToList();
+            results = Session.Find<Contact>().Where("FirstName=@FirstName", new { FirstName = "Andy" }).OrderBy("Surname").ToList();
         };
 
         It should_return_2_records = () => results.Count().ShouldEqual(2);
@@ -300,19 +300,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.DynamicFind<Contact>().ByFirstName("Andy").OrderBy("Surname").ToList();
+            results = Session.DynamicFind<Contact>().ByFirstName("Andy").OrderBy("Surname").ToList();
         };
 
         It should_return_1_records = () => results.Count().ShouldEqual(2);
@@ -329,19 +329,19 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
 
-            results = repository.DynamicFind<Contact>().ByFirstNameAndSurname("Andy", "Stewart").ToList();
+            results = Session.DynamicFind<Contact>().ByFirstNameAndSurname("Andy", "Stewart").ToList();
         };
 
         It should_return_1_records = () => results.Count().ShouldEqual(1);
@@ -357,7 +357,7 @@ namespace Dynamo.Specs
         {
             dynamic company = new Company();
             company.Name = "New Name";
-            repository.Save(company);
+            Session.Save(company);
 
             dynamic contact1 = new Contact();
             contact1.FirstName = "Andy";
@@ -369,15 +369,15 @@ namespace Dynamo.Specs
             contact2.Surname = "Stewart";
             company.Contacts.Add(contact2);
 
-            sqlCount = repository.DbProvider.QueryCount;
-            results = repository.Find<Contact>()
+            sqlCount = Session.DbProvider.QueryCount;
+            results = Session.Find<Contact>()
                                 .Include<Company>()
                                 .ToList();
 
             eagerLoadedCompany = results[0].Company;
         };
 
-        It Should_only_execute_two_queries = () => (repository.DbProvider.QueryCount - sqlCount).ShouldEqual(2);
+        It Should_only_execute_two_queries = () => (Session.DbProvider.QueryCount - sqlCount).ShouldEqual(2);
         It Should_return_company = () => ((string)eagerLoadedCompany.Name).ShouldEqual("New Name");
 
         static IList<dynamic> results;
@@ -392,20 +392,20 @@ namespace Dynamo.Specs
             dynamic contact = new Contact();
             contact.FirstName = "Andy";
             contact.Surname = "Stewart";
-            repository.Save(contact);
+            Session.Save(contact);
 
             dynamic contact2 = new Contact();
             contact2.FirstName = "Bob";
             contact2.Surname = "Stewart";
-            repository.Save(contact2);
+            Session.Save(contact2);
 
             dynamic contact3 = new Contact();
             contact3.FirstName = "Andy";
             contact3.Surname = "Smith";
-            repository.Save(contact3);
+            Session.Save(contact3);
         };
 
-        It Should_return_correct_count_of_records = () => repository.Find<Contact>().Count("FirstName").ShouldEqual(3);
+        It Should_return_correct_count_of_records = () => Session.Find<Contact>().Count("FirstName").ShouldEqual(3);
     }
 
     public class with_fresh_database
@@ -413,10 +413,10 @@ namespace Dynamo.Specs
         Establish context = () =>
         {
             TestDatabase.Initialise();
-            repository = new Repository(@"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True");
+            Session = new Session(@"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True");
         };
 
-        public static IRepository repository;
+        public static ISession Session;
 
     }
 }

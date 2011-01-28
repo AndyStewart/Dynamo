@@ -18,8 +18,8 @@ namespace Dynamo
 
             innerList = new List<T>();
 
-            if (entity.Repository != null)
-                innerList = ((IList<object>)entity.Repository.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
+            if (entity.Session != null)
+                innerList = ((IList<object>)entity.Session.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
         }
 
 
@@ -39,7 +39,7 @@ namespace Dynamo
             {
                 var property = item.Properties.First(q => q.ColumnName == entity.GetType().Name + "_Id");
                 property.Value = entity.Self.Id;
-                entity.Repository.Save(item);
+                entity.Session.Save(item);
             }
 
             innerList.Add(item);
@@ -82,7 +82,7 @@ namespace Dynamo
 
         public void Insert(int index, T item)
         {
-            entity.Repository.Save(item);
+            entity.Session.Save(item);
             innerList.Insert(index, item);
         }
 

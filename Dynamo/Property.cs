@@ -4,6 +4,7 @@ namespace Dynamo
 {
     public class Property
     {
+        public Type MappedType { get; set; }
         public PropertyType PropertyType { get; set; }
         public string ColumnName { get; set; }
         public string PropertyName { get; set; }

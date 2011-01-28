@@ -23,6 +23,8 @@ namespace Dynamo
             Properties = new List<Property>();
         }
 
+        public Type Type { get; set; }
+
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             var property = Properties.FirstOrDefault(q => q.PropertyName == binder.Name);
@@ -54,7 +56,7 @@ namespace Dynamo
                     return true;
                 }
 
-                result = Repository.GetById(property.Type, (int) property.Value);
+                result = Session.GetById(property.Type, (int) property.Value);
                 return true;
             }
 
@@ -95,7 +97,7 @@ namespace Dynamo
             return true;
         }
 
-        public IRepository Repository { get; set; }
+        public ISession Session { get; set; }
 
         public void Populate(IDataReader reader)
         {
@@ -120,6 +122,8 @@ namespace Dynamo
                 if (property.Value != null && property.PropertyType == PropertyType.Property)
                     property.Type = property.Value.GetType();
             }
+
+            Session.Cache.Add(new CachedItem { Id = Self.Id, Type = GetType(), Value = this });
         }
 
         protected void BelongsTo(string propertyName)
