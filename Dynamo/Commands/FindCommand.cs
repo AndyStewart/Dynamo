@@ -58,7 +58,7 @@ namespace Dynamo.Commands
                             return;
                         case QueryMode.Queries:
                             var entity = Activator.CreateInstance<T>();
-                            entity.Session = query.Session;
+                            entity.EntityCache = query.Session.EntityCache;
                             entity.Populate(reader);
                             Result.Add(entity);
                             break;

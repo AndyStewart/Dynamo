@@ -8,13 +8,13 @@ namespace Dynamo
 {
     public class Session : ISession
     {
-        public IList<CachedItem> Cache { get; set; }
-
         public Session(string connectionString)
         {
             DbProvider = new SqlProvider(connectionString);
-            Cache = new List<CachedItem>();
+            EntityCache = new EntityCache(this);
         }
+
+        public IEntityCache EntityCache { get; set; }
 
         public IDbProvider DbProvider { get; private set; }
         public IList<object> FindBySql(string sqlString, object parameters = null)
@@ -33,7 +33,7 @@ namespace Dynamo
                 while (reader.Read())
                 {
                     var entity = (IEntity)Activator.CreateInstance<T>();
-                    entity.Session = this;
+                    entity.EntityCache = EntityCache;
                     entity.Populate(reader);
                     results.Add(entity);
                 }
@@ -43,16 +43,18 @@ namespace Dynamo
 
         public void Save(Entity entity)
         {
-            if (entity.Session == null)
-                entity.Session = this;
+            if (entity.EntityCache == null)
+                entity.EntityCache = EntityCache;
 
             if (entity.Properties.Any(q =>  q.PropertyName == "Id" && q.Value != null))
             {
                 DbProvider.ExecuteCommand(new UpdateCommand(entity));
+                EntityCache.Add(entity);
                 return;
             }
 
             DbProvider.ExecuteCommand(new InsertCommand(entity));
+            EntityCache.Add(entity);
         }
 
         public T GetById<T>(int id) where T : Entity
@@ -62,11 +64,11 @@ namespace Dynamo
 
         public object GetById(Type entityType, int id)
         {
-            var command = new FindByIdCommand(entityType, id, this);
+            var command = new FindByIdCommand(entityType, id, EntityCache);
             DbProvider.ExecuteCommand(command);
 
             if (command.Result != null)
-                command.Result.Session = this;
+                command.Result.EntityCache = EntityCache;
 
             return command.Result;
         }
@@ -86,12 +88,5 @@ namespace Dynamo
         {
             return new Query<T>(DbProvider, this);
         }
-    }
-
-    public class CachedItem
-    {
-        public int Id { get; set; }
-        public Type Type { get; set; }
-        public Entity Value { get; set; }
     }
 }

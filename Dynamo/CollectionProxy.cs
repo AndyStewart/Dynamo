@@ -7,25 +7,25 @@ namespace Dynamo
 {
     public class CollectionProxy<T> : IList<T>  where T:Entity
     {
-        private readonly Entity entity;
-        private readonly IList<T> innerList;
+        private readonly Property hasManyProperty;
+        private readonly Entity parentEntity;
 
-        public CollectionProxy(Entity entity, Property hasManyProperty)
+        public CollectionProxy(Entity parentEntity, Property hasManyProperty)
         {
-            this.entity = entity;
-
-            var entityType = hasManyProperty.Type.GetGenericArguments()[0];
-
-            innerList = new List<T>();
-
-            if (entity.Session != null)
-                innerList = ((IList<object>)entity.Session.FindBySql("Select * from " + entityType.Name + " Where " + hasManyProperty.ColumnName + "=" + entity.Self.Id)).Cast<T>().ToList();
+            this.parentEntity = parentEntity;
+            this.hasManyProperty = hasManyProperty;
         }
 
 
         public IEnumerator<T> GetEnumerator()
         {
-            return innerList.GetEnumerator();
+            return getList().GetEnumerator();
+        }
+
+        private IList<T> getList()
+        {
+            int id = parentEntity.Self.Id;
+            return parentEntity.EntityCache.Find(typeof (T), id).Select(q => q.Value).Cast<T>().ToList();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -37,12 +37,11 @@ namespace Dynamo
         {
             if (item.Self.Id == null)
             {
-                var property = item.Properties.First(q => q.ColumnName == entity.GetType().Name + "_Id");
-                property.Value = entity.Self.Id;
-                entity.Session.Save(item);
+                item.EntityCache = parentEntity.EntityCache;
+                item.EntityCache.Add(item);
+                var property = item.Properties.First(q => q.ColumnName == parentEntity.GetType().Name + "_Id");
+                property.Value = parentEntity.Self.Id;
             }
-
-            innerList.Add(item);
         }
 
         public void Clear()
@@ -52,12 +51,12 @@ namespace Dynamo
 
         public bool Contains(T item)
         {
-            return innerList.Contains(item);
+            return getList().Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            innerList.CopyTo(array, arrayIndex);
+            getList().CopyTo(array, arrayIndex);
         }
 
         public bool Remove(T item)
@@ -67,23 +66,22 @@ namespace Dynamo
 
         public int Count
         {
-            get { return innerList.Count; }
+            get { return getList().Count; }
         }
 
         public bool IsReadOnly
         {
-            get { return innerList.IsReadOnly; }
+            get { return getList().IsReadOnly; }
         }
 
         public int IndexOf(T item)
         {
-            return innerList.IndexOf(item);
+            return getList().IndexOf(item);
         }
 
         public void Insert(int index, T item)
         {
-            entity.Session.Save(item);
-            innerList.Insert(index, item);
+            parentEntity.EntityCache.Add(item);
         }
 
         public void RemoveAt(int index)
@@ -93,7 +91,7 @@ namespace Dynamo
 
         public T this[int index]
         {
-            get { return innerList[index]; }
+            get { return getList()[index]; }
             set { throw new NotImplementedException(); }
         }
     }

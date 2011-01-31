@@ -69,12 +69,13 @@ namespace Dynamo
             foreach (var query in EagerQueries)
             {
                 var ids = result.Cast<Entity>().Select(q => q.Self.Id).ToArray();
-                var eagerResult = query.Where(paramaters:new { Id = ids }).ToList();
+                var eagerResult = query.Where(paramaters:new { Id = ids }).ToList().Cast<Entity>();
                 var type = query.GetType().GetGenericArguments()[0];
 
                 foreach (var entity in result.Cast<Entity>())
                 {
-                    entity.Properties.First(q => q.PropertyName == type.Name).Value = eagerResult.FirstOrDefault();
+                    entity.Properties.First(q => q.PropertyName == type.Name).Value = eagerResult.FirstOrDefault().Self.Id;
+                    entity.EntityCache.Add(eagerResult.FirstOrDefault());
                 }
            }
             return result.Cast<dynamic>().ToList();

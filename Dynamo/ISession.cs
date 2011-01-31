@@ -15,6 +15,6 @@ namespace Dynamo
         Query<T> Find<T>() where T : Entity;
         dynamic DynamicFind<T>() where T : Entity;
         IDbProvider DbProvider { get; }
-        IList<CachedItem> Cache { get; }
+        IEntityCache EntityCache { get; set; }
     }
 }

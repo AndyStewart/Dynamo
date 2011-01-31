@@ -1,3 +1,6 @@
+Dynamo - Dynamic C# ORM 
+=======================
+
 A Dynamic ORM, that aims to keep ORM simple while being Code Focused first.
 
 Below is a very early example.

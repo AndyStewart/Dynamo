@@ -8,13 +8,13 @@ namespace Dynamo.Commands
     {
         private readonly Type entityType;
         private readonly int id;
-        private readonly Session Session;
+        private readonly EntityCache entityCache;
 
-        public FindByIdCommand(Type entityType, int id, Session Session)
+        public FindByIdCommand(Type entityType, int id, IEntityCache entityCache)
         {
             this.entityType = entityType;
             this.id = id;
-            this.Session = Session;
+            this.entityCache = (EntityCache) entityCache;
         }
 
         public void Execute(IDbCommand dbCommand)
@@ -27,7 +27,7 @@ namespace Dynamo.Commands
                 while (reader.Read())
                 {
                     Result = (IEntity)Activator.CreateInstance(entityType);
-                    Result.Session = Session;
+                    Result.EntityCache = entityCache;
                     Result.Populate(reader);
                 }
             }

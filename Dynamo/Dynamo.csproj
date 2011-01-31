@@ -40,12 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedEntity.cs" />
     <Compile Include="CollectionProxy.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\FindCommand.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Commands\FindByIdCommand.cs" />
     <Compile Include="Commands\ISqlCommand.cs" />
+    <Compile Include="EntityCache.cs" />
+    <Compile Include="IEntityCache.cs" />
     <Compile Include="IQuery.cs" />
     <Compile Include="Provider\IDbProvider.cs" />
     <Compile Include="IEntity.cs" />

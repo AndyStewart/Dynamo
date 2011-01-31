@@ -23,7 +23,6 @@ namespace Dynamo
             Properties = new List<Property>();
         }
 
-        public Type Type { get; set; }
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
@@ -42,21 +41,14 @@ namespace Dynamo
 
             if (property.PropertyType == PropertyType.BelongsTo)
             {
-                var entity = property.Value as Entity;
-
-                if (entity != null)
-                {
-                    result = entity;
-                    return true;
-                }
-
                 if (property.Value == null)
                 {
                     result = null;
                     return true;
                 }
 
-                result = Session.GetById(property.Type, (int) property.Value);
+                var id= (int)property.Value;
+                result = EntityCache.Find(property.Type, id).FirstOrDefault().Value;
                 return true;
             }
 
@@ -90,14 +82,20 @@ namespace Dynamo
 
             if (property.PropertyType == PropertyType.BelongsTo)
             {
-                property.Value = value;
+                var entity = (Entity)value;
+                property.Value = entity.Self.Id;
+
+                if (EntityCache == null)
+                    EntityCache = entity.EntityCache;
+
+                EntityCache.Add(entity);
                 return true;
             }
 
             return true;
         }
 
-        public ISession Session { get; set; }
+        public IEntityCache EntityCache { get; set; }
 
         public void Populate(IDataReader reader)
         {
@@ -123,7 +121,7 @@ namespace Dynamo
                     property.Type = property.Value.GetType();
             }
 
-            Session.Cache.Add(new CachedItem { Id = Self.Id, Type = GetType(), Value = this });
+            EntityCache.Add(this);
         }
 
         protected void BelongsTo(string propertyName)
