@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitySpecs.cs" />
     <Compile Include="Fixtures\Company.cs" />
     <Compile Include="Fixtures\Contact.cs" />
     <Compile Include="Fixtures\TestDatabase.cs" />

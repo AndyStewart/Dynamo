@@ -124,24 +124,24 @@ namespace Dynamo
             EntityCache.Add(this);
         }
 
-        protected void BelongsTo(string propertyName)
+        protected void BelongsTo<T>(string propertyName = null)
         {
             Properties.Add(new Property
                                   {
                                       PropertyType = PropertyType.BelongsTo,
-                                      ColumnName = propertyName + "_Id",
-                                      PropertyName = propertyName,
-                                      Type = GetType().Assembly.GetTypes().FirstOrDefault(q => q.Name == propertyName)
+                                      ColumnName = (propertyName ?? typeof(T).Name) + "_Id",
+                                      PropertyName = propertyName ?? typeof(T).Name,
+                                      Type = typeof(T)
                                   });
         }
 
-        protected void HasMany<T>(string propertyName) where T :Entity
+        protected void HasMany<T>(string propertyName = null, string columnName = null) where T :Entity
         {
             Properties.Add(new Property
                                   {
                                       PropertyType = PropertyType.HasMany,
-                                      ColumnName = GetType().Name + "_Id",
-                                      PropertyName = propertyName,
+                                      ColumnName = columnName ?? GetType().Name + "_Id",
+                                      PropertyName = propertyName ?? typeof(T).Name,
                                       Type = typeof(List<>).MakeGenericType(typeof(T))
                                   });
         }

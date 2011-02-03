@@ -4,7 +4,7 @@
     {
         public Contact()
         {
-            BelongsTo("Company");
+            BelongsTo<Company>();
         }
 
         public string FullName

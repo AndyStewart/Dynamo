@@ -17,13 +17,19 @@ namespace Dynamo.Specs.Fixtures
                provider.ExecuteNonQuery(@"CREATE DATABASE [Dynamo_Test]");
                
            }
-           catch (Exception e)
+           catch
            {
 
            }
 
            var provider2 = new SqlProvider(@"Data Source=.\sqlexpress;Initial Catalog=Dynamo_Test;Integrated Security=True");
-           provider2.ExecuteNonQuery(@"DROP TABLE dbo.Contact");
+           try
+           {
+               provider2.ExecuteNonQuery(@"DROP TABLE dbo.Contact");
+           }
+           catch
+           {
+           }
            provider2.ExecuteNonQuery(@"CREATE TABLE dbo.Contact
 	                    (
 	                    Id int NOT NULL IDENTITY (1, 1),
@@ -37,8 +43,16 @@ namespace Dynamo.Specs.Fixtures
 	                    Id
 	                    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]");
 
-           
-           provider2.ExecuteNonQuery(@"DROP TABLE dbo.Company");
+
+           try
+           {
+               provider2.ExecuteNonQuery(@"DROP TABLE dbo.Company");
+           }
+           catch
+           {
+               
+           }
+
            provider2.ExecuteNonQuery(@"CREATE TABLE dbo.Company
 	                    (
 	                    Id int NOT NULL IDENTITY (1, 1),

@@ -144,8 +144,6 @@ namespace Dynamo.Specs
                              results = Session.Find<Contact>().Where("FirstName='Andy'").ToList();
                          };
 
-        private static dynamic contact;
-
         It should_return_2_records = () => results.Count().ShouldEqual(2);
         It should_return_first_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Stewart").ShouldBeTrue();
         It should_return_second_record = () => results.Any(q => q.FirstName == "Andy" && q.Surname == "Smith").ShouldBeTrue();

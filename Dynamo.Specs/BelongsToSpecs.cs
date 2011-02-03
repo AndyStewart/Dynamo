@@ -1,5 +1,6 @@
 using Dynamo.Specs.Fixtures;
 using Machine.Specifications;
+using System.Linq;
 
 namespace Dynamo.Specs
 {
@@ -17,6 +18,10 @@ namespace Dynamo.Specs
                             Session.Save(contact);
                         };
 
+        It should_have_property_for_company = () => ((Entity) contact).Properties.Any(q =>q.PropertyName == "Company" && 
+                                                                                                q.PropertyType == PropertyType.BelongsTo && 
+                                                                                                q.ColumnName == "Company_Id" && 
+                                                                                                q.Type == typeof (Company));
         It should_correctly_store_the_entity_id_in_the_table = () => ((int)Session.GetById<Contact>(contact.Id).Company.Id).ShouldEqual((int)company.Id);
         
         static dynamic contact;
