@@ -21,6 +21,7 @@ namespace Dynamo
         public Entity()
         {
             Properties = new List<Property>();
+            TableName = GetType().Name;
         }
 
 
@@ -97,6 +98,9 @@ namespace Dynamo
 
         public IEntityCache EntityCache { get; set; }
 
+        // Note: Not to happy with this one, but It'll do for now
+        public string TableName { get; set; }
+
         public void Populate(IDataReader reader)
         {
             for (var i = 0; i < reader.FieldCount; i++)
@@ -144,6 +148,17 @@ namespace Dynamo
                                       PropertyName = propertyName ?? typeof(T).Name,
                                       Type = typeof(List<>).MakeGenericType(typeof(T))
                                   });
+        }
+
+        protected void Property<T>(string propertyName, string columnName)
+        {
+            Properties.Add(new Property
+                               {
+                                   PropertyType = PropertyType.Property,
+                                   ColumnName = columnName,
+                                   PropertyName = propertyName,
+                                   Type = typeof(T)
+                               });
         }
     }
 }

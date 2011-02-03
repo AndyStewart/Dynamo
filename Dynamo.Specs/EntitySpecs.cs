@@ -5,7 +5,7 @@ using Machine.Specifications;
 
 namespace Dynamo.Specs
 {
-    public class Whem_mapping_entity_with_has_many
+    public class When_mapping_entity_with_has_many
     {
         Establish context = () => entity = new HasManyEntity();
         Because of = () => property = entity.Properties.FirstOrDefault(q => q.PropertyName == "Company");
@@ -26,7 +26,7 @@ namespace Dynamo.Specs
         }
     }
 
-    public class Whem_mapping_entity_with_has_many_and_custom_property_name
+    public class When_mapping_entity_with_has_many_and_custom_property_name
     {
         Establish context = () => entity = new HasManyEntity();
         Because of = () => property = entity.Properties.FirstOrDefault(q => q.PropertyName == "Company1");
@@ -47,7 +47,7 @@ namespace Dynamo.Specs
         }
     }
 
-    public class Whem_mapping_entity_with_has_many_and_custom_column_name
+    public class When_mapping_entity_with_has_many_and_custom_column_name
     {
         Establish context = () => entity = new HasManyEntity();
         Because of = () => property = entity.Properties.FirstOrDefault(q => q.PropertyName == "Company");
@@ -85,6 +85,45 @@ namespace Dynamo.Specs
             public BelongsToEntity()
             {
                 BelongsTo<Company>();
+            }
+        }
+    }
+
+    public class When_mapping_a_property_to_a_different_column_name
+    {
+        Establish context = () => entity = new PropertyEntity();
+        Because of = () => property = entity.Properties.FirstOrDefault(q => q.PropertyName == "Surname");
+
+        It should_set_table_name_automatically = () => entity.TableName.ShouldEqual("PropertyEntity");
+        It should_set_property_name_to_property_specified = () => property.PropertyName.ShouldEqual("Surname");
+        It should_set_column_name = () => property.ColumnName.ShouldEqual("PersonsSurname");
+        It should_set_type_to_string = () => property.Type.ShouldEqual(typeof(string));
+        It should_set_property_type = () => property.PropertyType.ShouldEqual(PropertyType.Property);
+
+        private static PropertyEntity entity;
+        private static Property property;
+
+        public class PropertyEntity : Entity
+        {
+            public PropertyEntity()
+            {
+                base.Property<string>("Surname", "PersonsSurname");
+            }
+        }
+    }
+
+    public class When_mapping_to_a_different_table_name
+    {
+        Because of = () => entity = new CustomTableEntity();
+        It should_set_property_name_to_property_specified = () => entity.TableName.ShouldEqual("CustomTable");
+
+        private static CustomTableEntity entity;
+
+        public class CustomTableEntity : Entity
+        {
+            public CustomTableEntity()
+            {
+                TableName = "CustomTable";
             }
         }
     }
