@@ -60,7 +60,7 @@ Querying the database using Dynamic finders
 
 Todo
 ----
-- Caching support
 - Pluggable Sql Providers
-- Pluggable conventions
 - Support for running in memory
+- Caching support
+- Pluggable conventions
