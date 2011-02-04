@@ -224,8 +224,7 @@ namespace Dynamo.Specs
             contact3.Surname = "Smith";
             Session.Save(contact3);
 
-            results = Session.Find<Contact>()
-                                .Where(paramaters:new { FirstName = "Andy" }).OrderBy("Surname").ToList();
+            results = Session.Find<Contact>().Where(new { FirstName = "Andy" }).OrderBy("Surname").ToList();
         };
 
         It should_return_2_records = () => results.Count().ShouldEqual(2);

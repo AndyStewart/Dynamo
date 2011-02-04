@@ -164,6 +164,11 @@ namespace Dynamo
         public List<IQuery> EagerQueries { get; set; }
 
         public Session Session { get; set; }
+
+        public IQuery Where(object condition)
+        {
+            return Where(paramaters: condition);
+        }
     }
 
     public enum QueryMode

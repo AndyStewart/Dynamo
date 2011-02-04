@@ -46,8 +46,7 @@ Returning Objects By Id
 Querying the database 
 	
 	var session = new Session("ConnectionStringHere");
-
-	session.Find<Contact>().Where(:parameters=new { FirstName="Andy" }).OrderBy("FirstName").ToList();
+	session.Find<Contact>().Where(new { FirstName="Andy" }).OrderBy("FirstName").ToList();
 	session.Find<Contact>().Where("FirstName=@FirstName", new { FirstName="Andy" }).ToList();
 
 
