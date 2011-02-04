@@ -19,8 +19,7 @@ namespace Dynamo.Commands
 
         public void Execute(IDbCommand dbCommand)
         {
-            var entityType = entity.GetType();
-            var sqlString = "INSERT INTO " + entityType.Name;
+            var sqlString = "INSERT INTO " + entity.TableName;
 
             var columnNameString = "";
             var valueString = "";

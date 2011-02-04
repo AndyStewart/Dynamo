@@ -37,10 +37,13 @@ namespace Dynamo
         {
             if (item.Self.Id == null)
             {
-                item.EntityCache = parentEntity.EntityCache;
+                item.EntityCache = parentEntity.EntityCache;    
                 item.EntityCache.Add(item);
-                var property = item.Properties.First(q => q.ColumnName == parentEntity.GetType().Name + "_Id");
-                property.Value = parentEntity.Self.Id;
+                
+                // Set Foriegn Key in Child
+                var a = item.Properties.FirstOrDefault(q => q.ColumnName == hasManyProperty.ColumnName);
+                if (a != null)
+                    a.Value = item.Self.Id;
             }
         }
 

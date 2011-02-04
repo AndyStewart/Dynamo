@@ -9,11 +9,12 @@ namespace Dynamo.Specs
     {
         Establish context = () => entity = new HasManyEntity();
         Because of = () => property = entity.Properties.FirstOrDefault(q => q.PropertyName == "Company");
+
         It should_set_property_name_to_type_name = () => property.PropertyName.ShouldEqual("Company");
         It should_set_column_name = () => property.ColumnName.ShouldEqual("HasManyEntity_Id");
         It should_set_type__to_Ilist_of_Company = () => property.Type.ShouldEqual(typeof(List<Company>));
-        It should_set_property_type= () => property.PropertyType.ShouldEqual(PropertyType.HasMany);
-        
+        It should_set_property_type = () => property.PropertyType.ShouldEqual(PropertyType.HasMany);
+
         private static HasManyEntity entity;
         private static Property property;
 

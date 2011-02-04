@@ -128,12 +128,12 @@ namespace Dynamo
             EntityCache.Add(this);
         }
 
-        protected void BelongsTo<T>(string propertyName = null)
+        protected void BelongsTo<T>(string propertyName = null, string columnName = null)
         {
             Properties.Add(new Property
                                   {
                                       PropertyType = PropertyType.BelongsTo,
-                                      ColumnName = (propertyName ?? typeof(T).Name) + "_Id",
+                                      ColumnName = columnName ?? (propertyName ?? typeof(T).Name) + "_Id",
                                       PropertyName = propertyName ?? typeof(T).Name,
                                       Type = typeof(T)
                                   });

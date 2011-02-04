@@ -19,7 +19,8 @@ namespace Dynamo.Commands
 
         public void Execute(IDbCommand dbCommand)
         {
-            dbCommand.CommandText = "SELECT * FROM " + entityType.Name + " WHERE Id=@Id";
+            var entity = (Entity)Activator.CreateInstance(entityType);
+            dbCommand.CommandText = "SELECT * FROM " + entity.TableName + " WHERE Id=@Id";
             dbCommand.Parameters.Add(new SqlParameter("Id", id));
 
             using (var reader = dbCommand.ExecuteReader(CommandBehavior.CloseConnection))

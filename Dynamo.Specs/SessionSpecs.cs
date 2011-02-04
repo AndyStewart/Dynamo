@@ -406,6 +406,49 @@ namespace Dynamo.Specs
         It Should_return_correct_count_of_records = () => Session.Find<Contact>().Count("FirstName").ShouldEqual(3);
     }
 
+    public class When_reading_data_from_customised_class : with_fresh_database
+    {
+        Because of = () =>
+        {
+            dynamic company = new CustomCompany();
+            company.CompanyName = "Company Name";
+            Session.Save(company);
+
+            contact = new CustomContact();
+            contact.FirstName = "Andy";
+            company.Contacts.Add(contact);
+
+            companyFound = Session.GetById<CustomCompany>(company.Id);
+        };
+
+        private static dynamic companyFound;
+        private static dynamic contact;
+
+        It should_return_company_name = () => ((string)companyFound.CompanyName).ShouldEqual("Company Name");
+        It should_load_back_company_for_contact = () => ((string)contact.ParentCompany.CompanyName).ShouldEqual("Company Name");
+        
+        public class CustomCompany : Entity
+        {
+            public CustomCompany()
+            {
+                TableName = "Company";
+                Property<string>("CompanyName", "Name");
+                HasMany<CustomContact>("Contacts", "Company_Id");
+            }
+        }
+
+        public class CustomContact : Entity
+        {
+            public CustomContact()
+            {
+                TableName = "Contact";
+                BelongsTo<CustomCompany>("ParentCompany", "Company_Id");
+            }
+        }
+    }
+
+
+
     public class with_fresh_database
     {
         Establish context = () =>
