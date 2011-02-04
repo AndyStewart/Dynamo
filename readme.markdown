@@ -1,11 +1,13 @@
 Dynamo - Dynamic C# ORM 
 =======================
+Dynamo is a object relational mapper developed using the c# and .net 4.0 dynamic features and inspired by the feature set of Activerecord for Ruby on Rails.
 
-Dynamo is a object relational mapper developed using the c# and .net 4.0 dynamic features and inspred by the feature set of activerecord for Ruby on Rails.
+Aim
+---
+To create a simple to use code focused ORM that is developed for c# first and can scale from small to large scale solutions. 
 
 Examples
 --------
-
 Mapping a class to a table, magically adds all columns in the table as properties in the class.
 
 	// Db Table: Contact
