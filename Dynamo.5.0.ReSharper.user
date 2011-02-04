@@ -14,45 +14,29 @@
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IQuery.cs" caret="337" fromTop="10" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:UpdateCommand.cs" caret="0" fromTop="0" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Property.cs" caret="98" fromTop="5" />
-      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:Company.cs" caret="130" fromTop="5" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:ISqlCommand.cs" caret="91" fromTop="4" />
       <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:HasManySpecs.cs" caret="560" fromTop="13" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IEntity.cs" caret="136" fromTop="6" />
-      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:TestDatabase.cs" caret="371" fromTop="11" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="2388" fromTop="26" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:ISession.cs" caret="367" fromTop="10" />
       <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:BelongsToSpecs.cs" caret="728" fromTop="18" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="51" fromTop="1" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="2786" fromTop="32" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IEntityCache.cs" caret="157" fromTop="7" />
-      <File id="d:Miscellaneous Files/f:System.Collections.Generic.IEnumerable`1.cs/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?_ReSharper.Dynamo?DecompilerCache?metadata?mscorlib-d4f7?System.Collections.Generic.IEnumerable`1.cs" caret="316" fromTop="7" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="516" fromTop="17" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="1311" fromTop="25" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="436" fromTop="18" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="1386" fromTop="35" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:ISession.cs" caret="124" fromTop="5" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="4594" fromTop="24" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:Company.cs" caret="201" fromTop="8" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="547" fromTop="20" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:EntitySpecs.cs" caret="3827" fromTop="27" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:Contact.cs" caret="146" fromTop="5" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:InsertCommand.cs" caret="803" fromTop="25" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="2163" fromTop="23" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Provider/f:SqlProvider.cs" caret="1793" fromTop="25" />
-      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="15652" fromTop="24" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Query.cs" caret="2560" fromTop="19" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="1138" fromTop="30" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="1577" fromTop="36" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="978" fromTop="20" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:TestDatabase.cs" caret="892" fromTop="28" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="7377" fromTop="75" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.markdown/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.markdown" caret="323" fromTop="7" />
     </RecentFiles>
     <RecentEdits>
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="1167" fromTop="26" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="1712" fromTop="42" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="1859" fromTop="47" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1452" fromTop="35" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1570" fromTop="34" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1793" fromTop="44" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1894" fromTop="49" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1998" fromTop="36" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="2135" fromTop="16" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="2342" fromTop="25" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="1483" fromTop="37" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="393" fromTop="15" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="362" fromTop="14" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindCommand.cs" caret="1895" fromTop="38" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="2132" fromTop="26" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="339" fromTop="11" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/d:Commands/f:FindByIdCommand.cs" caret="502" fromTop="15" />
-      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="2284" fromTop="26" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="4080" fromTop="26" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="2865" fromTop="24" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="1425" fromTop="26" />
@@ -60,11 +44,29 @@
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="831" fromTop="26" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IEntityCache.cs" caret="48" fromTop="0" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="465" fromTop="21" />
-      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.txt/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.txt" caret="51" fromTop="1" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:IEntityCache.cs" caret="162" fromTop="7" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="864" fromTop="28" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="397" fromTop="16" />
       <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:EntityCache.cs" caret="436" fromTop="18" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="16093" fromTop="32" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="15743" fromTop="23" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:Company.cs" caret="169" fromTop="7" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:EntitySpecs.cs" caret="376" fromTop="10" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:EntitySpecs.cs" caret="721" fromTop="14" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="17132" fromTop="6" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="1760" fromTop="17" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Session.cs" caret="434" fromTop="0" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="18249" fromTop="38" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/d:Fixtures/f:Contact.cs" caret="146" fromTop="5" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:EntitySpecs.cs" caret="3827" fromTop="27" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:Entity.cs" caret="4577" fromTop="31" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1098" fromTop="32" />
+      <File id="BCBE81D7-3AC4-4F8D-9E8B-26C0F9A67FAD/f:CollectionProxy.cs" caret="1236" fromTop="24" />
+      <File id="F453B196-45CD-4E7F-AC32-49AE863EF89B/f:SessionSpecs.cs" caret="18010" fromTop="28" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.markdown/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.markdown" caret="208" fromTop="2" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.markdown/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.markdown" caret="1136" fromTop="31" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.markdown/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.markdown" caret="1589" fromTop="41" />
+      <File id="CD7139E4-0092-490B-AC60-3A96A77470BE/f:readme.markdown/l:C!?Users?stewarta?Documents?My Dropbox?DotNet?Dynamo?readme.markdown" caret="322" fromTop="7" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -82,10 +84,10 @@
     <ItemStatistics item="Default">
       <Item value="with_fresh_database`0" priority="1" />
       <Item value="repository" priority="10" />
-      <Item value="var" priority="22" />
+      <Item value="var" priority="23" />
       <Item value="new" priority="20" />
-      <Item value="Company`0" priority="2" />
-      <Item value="public" priority="2" />
+      <Item value="Company`0" priority="3" />
+      <Item value="public" priority="3" />
       <Item value="class" priority="1" />
       <Item value="ctor" priority="2" />
       <Item value="func" priority="1" />
@@ -103,8 +105,8 @@
       <Item value="enum" priority="0" />
       <Item value="Relationships" priority="3" />
       <Item value="propertyName" priority="1" />
-      <Item value="if" priority="21" />
-      <Item value="q" priority="16" />
+      <Item value="if" priority="22" />
+      <Item value="q" priority="19" />
       <Item value="binder" priority="5" />
       <Item value="result" priority="10" />
       <Item value="value" priority="10" />
@@ -121,7 +123,7 @@
       <Item value="T`0" priority="3" />
       <Item value="typeof" priority="6" />
       <Item value="entityType" priority="3" />
-      <Item value="BelongsTo" priority="0" />
+      <Item value="BelongsTo" priority="1" />
       <Item value="this" priority="8" />
       <Item value="Where`1" priority="0" />
       <Item value="FirstOrDefault`1" priority="0" />
@@ -179,7 +181,7 @@
       <Item value="false" priority="0" />
       <Item value="DynamicMetaObject`0" priority="0" />
       <Item value="CSharpBinderFlags`0" priority="0" />
-      <Item value="a" priority="0" />
+      <Item value="a" priority="2" />
       <Item value="propertyToSet" priority="1" />
       <Item value="eagerResult" priority="2" />
       <Item value="is" priority="0" />
@@ -208,8 +210,8 @@
       <Item value="private" priority="0" />
       <Item value="List&lt;CachedEntity&gt;" priority="0" />
       <Item value="EntityCache" priority="5" />
-      <Item value="parentEntity" priority="5" />
-      <Item value="item" priority="4" />
+      <Item value="parentEntity" priority="6" />
+      <Item value="item" priority="6" />
       <Item value="entities" priority="0" />
       <Item value="entityCache" priority="0" />
       <Item value="getList`0" priority="1" />
@@ -219,6 +221,9 @@
       <Item value="Find`0" priority="0" />
       <Item value="existingObject" priority="1" />
       <Item value="IEnumerable" priority="0" />
+      <Item value="void" priority="0" />
+      <Item value="BelongsTo`1" priority="0" />
+      <Item value="hasManyProperty" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Repository">
       <Item value="Save`0" priority="1" />
@@ -232,13 +237,14 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
       <Item value="ConvertAll`1" priority="0" />
-      <Item value="FirstOrDefault`1" priority="0" />
+      <Item value="FirstOrDefault`1" priority="1" />
       <Item value="Add`0" priority="2" />
-      <Item value="Where`1" priority="1" />
+      <Item value="Where`1" priority="2" />
       <Item value="Count" priority="1" />
       <Item value="Remove`0" priority="0" />
       <Item value="RemoveAt`0" priority="0" />
       <Item value="ForEach`0" priority="0" />
+      <Item value="First`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Relationship">
       <Item value="Property" priority="3" />
@@ -268,7 +274,7 @@
       <Item value="GetType`0" priority="4" />
       <Item value="Self" priority="6" />
       <Item value="TrySetMember`0" priority="0" />
-      <Item value="Properties" priority="1" />
+      <Item value="Properties" priority="2" />
       <Item value="Session" priority="0" />
       <Item value="EntityCache" priority="8" />
       <Item value="Type" priority="0" />
@@ -364,7 +370,7 @@
     <ItemStatistics item="Qualified:System.Object">
       <Item value="FirstName" priority="0" />
       <Item value="Equals`0" priority="0" />
-      <Item value="Id" priority="1" />
+      <Item value="Id" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Provider.IDbProvider">
       <Item value="QueryCount" priority="0" />
@@ -389,15 +395,19 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.Property">
       <Item value="PropertyName" priority="0" />
-      <Item value="Value" priority="1" />
-      <Item value="Type" priority="1" />
+      <Item value="Value" priority="2" />
+      <Item value="Type" priority="2" />
+      <Item value="PropertyType" priority="1" />
+      <Item value="ColumnName" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:T">
       <Item value="Repository" priority="1" />
       <Item value="EntityCache" priority="3" />
+      <Item value="Self" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.ISession">
       <Item value="Cache" priority="1" />
+      <Item value="DynamicFind`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Dynamo.CachedItem">
       <Item value="Type" priority="0" />
