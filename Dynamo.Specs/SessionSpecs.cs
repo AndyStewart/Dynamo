@@ -411,11 +411,12 @@ namespace Dynamo.Specs
         {
             dynamic company = new CustomCompany();
             company.CompanyName = "Company Name";
-            Session.Save(company);
-
             contact = new CustomContact();
             contact.FirstName = "Andy";
+            company.Contacts = new List<Contact>();
             company.Contacts.Add(contact);
+            
+            Session.Save(company);
 
             companyFound = Session.GetById<CustomCompany>(company.Id);
         };

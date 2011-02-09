@@ -10,6 +10,14 @@ namespace Dynamo
     {
         public List<Property> Properties;
 
+        public object this[string index]
+        {
+            get
+            {
+                return Properties.FirstOrDefault(q => q.PropertyName == index).Value;
+            }
+        }
+
         public dynamic Self
         {
             get

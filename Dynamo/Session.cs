@@ -79,7 +79,7 @@ namespace Dynamo
             DbProvider.ExecuteCommand(new DeleteCommand(entity));
         }
 
-        public Query<T> Find<T>() where T : Entity
+        public IQuery Find<T>() where T : Entity
         {
             return new Query<T>(DbProvider, this);
         }

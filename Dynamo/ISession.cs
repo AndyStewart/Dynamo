@@ -12,7 +12,7 @@ namespace Dynamo
         T GetById<T>(int id) where T : Entity;
         void Delete<T>(T entity) where T : Entity;
         object GetById(Type entityType, int id);
-        Query<T> Find<T>() where T : Entity;
+        IQuery Find<T>() where T : Entity;
         dynamic DynamicFind<T>() where T : Entity;
         IDbProvider DbProvider { get; }
         IEntityCache EntityCache { get; set; }
